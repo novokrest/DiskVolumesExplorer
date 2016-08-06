@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiskVolumesExplorer.Core", "DiskVolumesExplorer.Core\DiskVolumesExplorer.Core.csproj", "{EF2DDFF8-7028-4861-B7AF-9F16D71927EA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiskVolumesExplorer.Core.UnitTests", "DiskVolumesExplorer.Core.UnitTests\DiskVolumesExplorer.Core.UnitTests.csproj", "{0518408F-C7AF-44E1-A5F7-737C9875B15B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiskVolumesExplorer.Service", "DiskVolumesExplorer.Service\DiskVolumesExplorer.Service.csproj", "{94107C4C-DAEB-4BC5-9349-8B76EF4B67C7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiskVolumesExplorer.Client", "DiskVolumesExplorer.Client\DiskVolumesExplorer.Client.csproj", "{8F4BE51F-F107-4A60-80AC-5BB41CC21A47}"
+	ProjectSection(ProjectDependencies) = postProject
+		{94107C4C-DAEB-4BC5-9349-8B76EF4B67C7} = {94107C4C-DAEB-4BC5-9349-8B76EF4B67C7}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EF2DDFF8-7028-4861-B7AF-9F16D71927EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF2DDFF8-7028-4861-B7AF-9F16D71927EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF2DDFF8-7028-4861-B7AF-9F16D71927EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF2DDFF8-7028-4861-B7AF-9F16D71927EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0518408F-C7AF-44E1-A5F7-737C9875B15B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0518408F-C7AF-44E1-A5F7-737C9875B15B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0518408F-C7AF-44E1-A5F7-737C9875B15B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0518408F-C7AF-44E1-A5F7-737C9875B15B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{94107C4C-DAEB-4BC5-9349-8B76EF4B67C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94107C4C-DAEB-4BC5-9349-8B76EF4B67C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94107C4C-DAEB-4BC5-9349-8B76EF4B67C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94107C4C-DAEB-4BC5-9349-8B76EF4B67C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F4BE51F-F107-4A60-80AC-5BB41CC21A47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F4BE51F-F107-4A60-80AC-5BB41CC21A47}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F4BE51F-F107-4A60-80AC-5BB41CC21A47}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F4BE51F-F107-4A60-80AC-5BB41CC21A47}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
