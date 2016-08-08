@@ -9,6 +9,7 @@ namespace DiskVolumesExplorer.Core
 {
     public interface IVirtualMachine
     {
-        DiskCollection Disks { get; }
+        string Name { get; }
+        //DiskCollection Disks { get; }
     }
 }

@@ -10,7 +10,7 @@ namespace DiskVolumesExplorer.Client
             App app = new App();
             app.InitializeComponent();
 
-            app.Run(new ConnectionDialog());
+            app.Run(MainWindowCreator.Create());
         }
     }
 }

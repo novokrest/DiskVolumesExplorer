@@ -1,0 +1,92 @@
+﻿<Window x:Class="DiskVolumesExplorer.Client.Dialogs.ConnectionDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DiskVolumesExplorer.Client.Dialogs"
+        xmlns:components="clr-namespace:DiskVolumesExplorer.Client.Components"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+        mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=local:ConnectionDialogViewModel, IsDesignTimeCreatable=False}"
+        Title="ConnectionDialog" Height="180" Width="300" SizeToContent="WidthAndHeight">
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Closing">
+            <i:InvokeCommandAction Command="{Binding CloseCommand}"></i:InvokeCommandAction>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <i:Interaction.Behaviors>
+        <components:CancelCloseWindowBehavior CancelClose="{Binding CancelClose}" />
+    </i:Interaction.Behaviors>
+
+    <Grid Margin="10">
+        <Grid.Resources>
+            <ResourceDictionary>
+                <Style x:Key="EndWithColon" TargetType="Label">
+                    <Setter Property="HorizontalAlignment" Value="Right"/>
+                    <Setter Property="ContentStringFormat" Value="{}{0}:"/>
+                </Style>
+                <Style TargetType="TextBox">
+                    <Setter Property="Width" Value="200"></Setter>
+                </Style>
+                <components:BooleanToVisibleHiddenConverter x:Key="BooleanToVisibilityConverter"/>
+                <components:ReverseBooleanToVisibilityConverter x:Key="ReverseBooleanToVisibilityConverter"/>
+            </ResourceDictionary>
+        </Grid.Resources>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="3"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="3"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="5"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="5"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Label Content="Server address"
+               Style="{StaticResource EndWithColon}"/>
+        <TextBox Grid.Row="0" Grid.Column="1" 
+                 IsEnabled="{Binding IsConnecting, Converter={StaticResource ReverseBooleanToVisibilityConverter}}"
+                 Text="{Binding ServerAddress, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <Label Grid.Row="2" Grid.Column="0" 
+               Style="{StaticResource EndWithColon}"
+               Content="User name"/>
+        <TextBox Grid.Row="2" Grid.Column="1" 
+                 IsEnabled="{Binding IsConnecting, Converter={StaticResource ReverseBooleanToVisibilityConverter}}"
+                 Text="{Binding UserName, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <Label Grid.Row="4" Grid.Column="0" 
+               Style="{StaticResource EndWithColon}"
+               Content="Password"/>
+        <PasswordBox Grid.Row="4" Grid.Column="1" 
+                     IsEnabled="{Binding IsConnecting, Converter={StaticResource ReverseBooleanToVisibilityConverter}}"
+                     components:PasswordHelper.Attach="True"
+                     components:PasswordHelper.Password="{Binding Password, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <ProgressBar Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2"
+                     Height="10"
+                     IsIndeterminate="True"
+                     Visibility="{Binding IsConnecting, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+        
+        <Label Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2"
+               Foreground="DarkRed"
+               VerticalAlignment="Top"
+               Content="{Binding ErrorMessage}"
+               Visibility="{Binding IsError, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+        
+        <Button Grid.Row="8" Grid.Column="1"
+                Content="CONNECT"
+                IsEnabled="{Binding IsConnecting, Converter={StaticResource ReverseBooleanToVisibilityConverter}}"
+                Height="30" Padding="5"
+                HorizontalAlignment="Right"
+                Command="{Binding ConnectCommand}"/>
+    </Grid>
+</Window>

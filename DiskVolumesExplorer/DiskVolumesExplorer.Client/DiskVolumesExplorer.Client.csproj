@@ -43,6 +43,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -57,12 +58,22 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConnectionDialog.xaml.cs">
+    <Compile Include="Base\ErrorViewModel.cs" />
+    <Compile Include="Components\BooleanToVisibleHiddenConverter.cs" />
+    <Compile Include="Components\CancelCloseBehavior.cs" />
+    <Compile Include="Components\IconTypeToImageConverter.cs" />
+    <Compile Include="Components\ReverseBooleanToVisibilityConverter.cs" />
+    <Compile Include="Dialogs\CloseDialogService.cs" />
+    <Compile Include="Dialogs\ConnectionDialog.xaml.cs">
       <DependentUpon>ConnectionDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ConnectionDialogViewModel.cs" />
+    <Compile Include="Dialogs\ConnectionDialogViewModel.cs" />
+    <Compile Include="Dialogs\DialogsService.cs" />
     <Compile Include="Extensions\SecureStringExtension.cs" />
-    <Compile Include="PasswordHelper.cs" />
+    <Compile Include="MainWindow\IconsProvider.cs" />
+    <Compile Include="MainWindow\MainWindowCreator.cs" />
+    <Compile Include="Components\PasswordHelper.cs" />
+    <Compile Include="MainWindow\VolumeViewModel.cs" />
     <Compile Include="ServerServiceProvider.cs" />
     <Compile Include="Service References\VmWareServices\Reference.cs">
       <AutoGen>True</AutoGen>
@@ -73,11 +84,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="ConnectionDialog.xaml">
+    <Page Include="Dialogs\ConnectionDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MainWindow.xaml">
+    <Page Include="MainWindow\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -85,13 +96,13 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MainWindow.xaml.cs">
+    <Compile Include="MainWindow\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MainWindowViewModel.cs" />
+    <Compile Include="MainWindow\MainWindowViewModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -148,6 +159,21 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DiskVolumesExplorer.Core\DiskVolumesExplorer.Core.csproj">
+      <Project>{EF2DDFF8-7028-4861-B7AF-9F16D71927EA}</Project>
+      <Name>DiskVolumesExplorer.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Volume2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Volume.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Volume3.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -8,6 +8,8 @@ namespace DiskVolumesExplorer.Client.Extensions
     {
         public static string ConvertToString(this SecureString secureString)
         {
+            if (secureString == null) return string.Empty;
+
             IntPtr secureStringPtr = IntPtr.Zero;
             try
             {

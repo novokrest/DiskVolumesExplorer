@@ -1,14 +1,16 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 
 namespace DiskVolumesExplorer.Core.UnitTests
 {
-    [TestClass]
-    public class UnitTest1
+    [TestFixture]
+    public class VmWareApiTests
     {
-        [TestMethod]
-        public void TestMethod1()
+        private readonly 
+
+        [Test]
+        public void GetVirtualMachinesTest()
         {
+
         }
     }
 }
