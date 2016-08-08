@@ -57,6 +57,12 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConnectionDialog.xaml.cs">
+      <DependentUpon>ConnectionDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ConnectionDialogViewModel.cs" />
+    <Compile Include="Extensions\SecureStringExtension.cs" />
+    <Compile Include="PasswordHelper.cs" />
     <Compile Include="ServerServiceProvider.cs" />
     <Compile Include="Service References\VmWareServices\Reference.cs">
       <AutoGen>True</AutoGen>
@@ -66,6 +72,10 @@
     <Page Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ConnectionDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
