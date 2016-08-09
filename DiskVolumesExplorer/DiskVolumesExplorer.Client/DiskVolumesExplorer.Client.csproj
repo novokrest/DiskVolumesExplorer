@@ -68,7 +68,7 @@
       <DependentUpon>ConnectionDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\ConnectionDialogViewModel.cs" />
-    <Compile Include="Dialogs\DialogsService.cs" />
+    <Compile Include="Dialogs\ConnectionDialogService.cs" />
     <Compile Include="Extensions\SecureStringExtension.cs" />
     <Compile Include="MainWindow\IconsProvider.cs" />
     <Compile Include="MainWindow\MainWindowCreator.cs" />

@@ -2,7 +2,7 @@
 
 namespace DiskVolumesExplorer.Core.Mocks
 {
-    class MockVirtualMachine : IVirtualMachine
+    public class MockVirtualMachine : IVirtualMachine
     {
         private static int _instanceCounter;
 
@@ -10,8 +10,10 @@ namespace DiskVolumesExplorer.Core.Mocks
         {
             int instanceNumber = Interlocked.Increment(ref _instanceCounter);
             Name = $"Virtual Machine #{instanceNumber}";
+            Disks = new MockDiskCollection();
         }
 
         public string Name { get; }
+        public IDiskCollection Disks { get; }
     }
 }

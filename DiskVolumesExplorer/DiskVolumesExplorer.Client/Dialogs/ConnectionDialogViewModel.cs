@@ -10,9 +10,8 @@ namespace DiskVolumesExplorer.Client.Dialogs
 {
     internal class ConnectionDialogViewModel : ErrorViewModel
     {
-        private readonly IServerServiceConnector _serverServiceConnector;
+        private readonly IHypervisorServiceConnector _hypervisorServiceConnector;
         private readonly ICloseDialogService _closeDialogService;
-        private readonly ConnectionConfig _connectionConfig;
 
         private readonly DelegateCommand _connectCommand;
         private readonly DelegateCommand _closeCommand;
@@ -23,11 +22,10 @@ namespace DiskVolumesExplorer.Client.Dialogs
         private bool _connecting;
         private bool _cancelClose;
 
-        public ConnectionDialogViewModel(ConnectionConfig connectionConfig, ICloseDialogService closeDialogService, IServerServiceConnector serverServiceConnector)
+        public ConnectionDialogViewModel(ICloseDialogService closeDialogService, IHypervisorServiceConnector hypervisorServiceConnector)
         {
-            _connectionConfig = connectionConfig;
             _closeDialogService = closeDialogService;
-            _serverServiceConnector = serverServiceConnector;
+            _hypervisorServiceConnector = hypervisorServiceConnector;
             _connectCommand = new DelegateCommand(Connect, CanConnect);
             _closeCommand = new DelegateCommand(Close);
         }
@@ -43,7 +41,6 @@ namespace DiskVolumesExplorer.Client.Dialogs
                 if (!string.Equals(_serverAddress, value, StringComparison.Ordinal))
                 {
                     _serverAddress = value;
-                    _connectionConfig.ServerAddress = _serverAddress;
                     _connectCommand.RaiseCanExecuteChanged();
                     OnPropertyChanged();
                 }
@@ -58,7 +55,6 @@ namespace DiskVolumesExplorer.Client.Dialogs
                 if (!string.Equals(_userName, value, StringComparison.Ordinal))
                 {
                     _userName = value;
-                    _connectionConfig.UserName = _userName;
                     _connectCommand.RaiseCanExecuteChanged();
                     OnPropertyChanged();
                 }
@@ -73,7 +69,6 @@ namespace DiskVolumesExplorer.Client.Dialogs
                 if (_password != value)
                 {
                     _password = value;
-                    _connectionConfig.Password = _password;
                     _connectCommand.RaiseCanExecuteChanged();
                     OnPropertyChanged();
                 }
@@ -87,14 +82,25 @@ namespace DiskVolumesExplorer.Client.Dialogs
             {
                 if (_connecting != value)
                 {
-                    _cancelClose = value;
                     _connecting = value;
+                    CancelClose = value;
                     OnPropertyChanged();
                 }
             }
         }
 
-        public bool CancelClose => _cancelClose;
+        public bool CancelClose
+        {
+            get { return _cancelClose; }
+            set
+            {
+                if (_cancelClose != value)
+                {
+                    _cancelClose = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
 
         private bool IsValid()
         {
@@ -107,7 +113,7 @@ namespace DiskVolumesExplorer.Client.Dialogs
 
             if (await ConnectAsync())
             {
-                _closeDialogService.Close(true);
+                _closeDialogService.CloseDialog(true);
             }
             else
             {
@@ -118,10 +124,23 @@ namespace DiskVolumesExplorer.Client.Dialogs
         private async Task<bool> ConnectAsync()
         {
             IsConnecting = true;
-            bool connectResult = await _serverServiceConnector.ConnectAsync();
+
+            var connectionConfig = CreateConnectionConfig();
+            bool connectResult = await _hypervisorServiceConnector.ConnectAsync(connectionConfig);
+
             IsConnecting = false;
 
             return connectResult;
+        }
+
+        private IConnectionConfig CreateConnectionConfig()
+        {
+            return new ConnectionConfig
+            {
+                ServerAddress = _serverAddress,
+                UserName = _userName,
+                Password = _password
+            };
         }
 
         private bool CanConnect()

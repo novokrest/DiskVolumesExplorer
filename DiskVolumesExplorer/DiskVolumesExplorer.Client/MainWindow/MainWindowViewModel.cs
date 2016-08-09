@@ -9,12 +9,12 @@ namespace DiskVolumesExplorer.Client
 {
     internal class MainWindowViewModel : BindableBase
     {
-        private readonly IDialogsService _dialogsService;
+        private readonly IConnectionDialogService _connectionDialogService;
         private readonly DelegateCommand _showConnectionDialogCommand;
 
-        public MainWindowViewModel(IDialogsService dialogsService)
+        public MainWindowViewModel(IConnectionDialogService connectionDialogService)
         {
-            _dialogsService = dialogsService;
+            _connectionDialogService = connectionDialogService;
             _showConnectionDialogCommand = new DelegateCommand(ShowConnectionDialog);
 
             Volumes = new ObservableCollection<VolumeViewModel>()
@@ -33,7 +33,7 @@ namespace DiskVolumesExplorer.Client
         private void ShowConnectionDialog()
         {
             var connectionConfig = new ConnectionConfig();
-            //_dialogService.ShowConnectionDialog(connectionConfig);
+            _connectionDialogService.ShowConnectionDialog();
         }
     }
 }

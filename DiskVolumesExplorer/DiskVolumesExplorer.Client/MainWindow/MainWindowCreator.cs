@@ -8,9 +8,9 @@ namespace DiskVolumesExplorer.Client
     {
         public static Window Create()
         {
-            var serverServiceConnector = new MockServerServiceConnector();
+            var serverServiceConnector = new MockHypervisorServiceConnector();
             var mainWindow = new MainWindow();
-            var dialogService = new DialogsService(mainWindow, serverServiceConnector);
+            var dialogService = new ConnectionDialogService(mainWindow, serverServiceConnector);
             var mainWindowViewModel = new MainWindowViewModel(dialogService);
             mainWindow.DataContext = mainWindowViewModel;
             return mainWindow;

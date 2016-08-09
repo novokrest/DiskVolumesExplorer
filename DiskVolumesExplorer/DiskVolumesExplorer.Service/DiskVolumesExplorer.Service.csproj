@@ -91,14 +91,14 @@
   <ItemGroup>
     <Content Include="scripts\ai.0.22.9-build00167.js" />
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />
-    <Content Include="Hypervisor.svc" />
+    <Content Include="HypervisorService.svc" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Hypervisor.svc.cs">
-      <DependentUpon>Hypervisor.svc</DependentUpon>
+    <Compile Include="HypervisorService.svc.cs">
+      <DependentUpon>HypervisorService.svc</DependentUpon>
     </Compile>
-    <Compile Include="IHypervisor.cs" />
+    <Compile Include="IHypervisorService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -115,6 +115,12 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DiskVolumesExplorer.Core\DiskVolumesExplorer.Core.csproj">
+      <Project>{EF2DDFF8-7028-4861-B7AF-9F16D71927EA}</Project>
+      <Name>DiskVolumesExplorer.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -57,14 +57,18 @@
     <Compile Include="IHypervisor.cs" />
     <Compile Include="IServiceConnector.cs" />
     <Compile Include="IVirtualMachine.cs" />
-    <Compile Include="Mocks\MockServerService.cs" />
-    <Compile Include="Mocks\MockServerServiceConnector.cs" />
+    <Compile Include="Mocks\CountableInstance.cs" />
+    <Compile Include="Mocks\MockCollection.cs" />
+    <Compile Include="Mocks\MockDiskCollection.cs" />
+    <Compile Include="Mocks\MockHypervisorServiceConnector.cs" />
     <Compile Include="Mocks\MockVirtualMachine.cs" />
+    <Compile Include="Mocks\MockVolumeCollection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServerService.cs" />
     <Compile Include="VmWareService.cs" />
     <Compile Include="VmWare\CustomSecurityAssertionBearer.cs" />
     <Compile Include="VmWare\VmWareServiceConnection.cs" />
+    <Compile Include="Volume.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

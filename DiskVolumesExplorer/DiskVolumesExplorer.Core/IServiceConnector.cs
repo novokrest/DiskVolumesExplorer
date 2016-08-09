@@ -2,8 +2,9 @@
 
 namespace DiskVolumesExplorer.Core
 {
-    public interface IServerServiceConnector
+    public interface IHypervisorServiceConnector
     {
-        Task<bool> ConnectAsync();
+        Task<bool> ConnectAsync(IConnectionConfig connectionConfig);
+        Task CancelConnectingAsync();
     }
 }
