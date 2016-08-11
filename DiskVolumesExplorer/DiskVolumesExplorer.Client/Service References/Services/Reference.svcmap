@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="28f78168-1d99-4c27-83d0-39195d57cd63" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:54731/HypervisorService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="HypervisorService.disco" MetadataType="Disco" ID="271f4d8b-f469-4be5-a57c-6408a1144f7c" SourceId="1" SourceUrl="http://localhost:54731/HypervisorService.svc?disco" />
+    <MetadataFile FileName="MockHypervisorService.wsdl" MetadataType="Wsdl" ID="37354558-b321-443e-a4e4-14f306779362" SourceId="1" SourceUrl="http://localhost:54731/HypervisorService.svc?wsdl" />
+    <MetadataFile FileName="HypervisorService2.xsd" MetadataType="Schema" ID="9f3b322c-df2a-4396-b98f-a39cef7269d9" SourceId="1" SourceUrl="http://localhost:54731/HypervisorService.svc?xsd=xsd0" />
+    <MetadataFile FileName="HypervisorService1.xsd" MetadataType="Schema" ID="2d10d1c3-8177-42de-9ef6-bd4fe3275e3c" SourceId="1" SourceUrl="http://localhost:54731/HypervisorService.svc?xsd=xsd1" />
+    <MetadataFile FileName="HypervisorService.xsd" MetadataType="Schema" ID="dfb55c13-5638-4491-a01b-f1c5e2cc3fb4" SourceId="1" SourceUrl="http://localhost:54731/HypervisorService.svc?xsd=xsd2" />
+    <MetadataFile FileName="HypervisorService31.xsd" MetadataType="Schema" ID="fedd4972-ce40-4304-9886-ebf8c146f50e" SourceId="1" SourceUrl="http://localhost:54731/HypervisorService.svc?xsd=xsd3" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

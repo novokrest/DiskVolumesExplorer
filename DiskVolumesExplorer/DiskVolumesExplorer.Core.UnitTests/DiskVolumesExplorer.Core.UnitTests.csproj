@@ -50,11 +50,18 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="Extensions\ArrayExtension.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DiskVolumesExplorer.Core\DiskVolumesExplorer.Core.csproj">
+      <Project>{EF2DDFF8-7028-4861-B7AF-9F16D71927EA}</Project>
+      <Name>DiskVolumesExplorer.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

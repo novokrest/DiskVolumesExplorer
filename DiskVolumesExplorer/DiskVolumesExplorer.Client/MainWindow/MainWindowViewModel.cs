@@ -1,7 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
 using DiskVolumesExplorer.Client.Dialogs;
-using DiskVolumesExplorer.Core;
 using Prism.Commands;
 using Prism.Mvvm;
 
@@ -9,11 +8,13 @@ namespace DiskVolumesExplorer.Client
 {
     internal class MainWindowViewModel : BindableBase
     {
+        private readonly IWindowCloseService _closeDialogService;
         private readonly IConnectionDialogService _connectionDialogService;
         private readonly DelegateCommand _showConnectionDialogCommand;
 
-        public MainWindowViewModel(IConnectionDialogService connectionDialogService)
+        public MainWindowViewModel(IWindowCloseService closeDialogService, IConnectionDialogService connectionDialogService)
         {
+            _closeDialogService = closeDialogService;
             _connectionDialogService = connectionDialogService;
             _showConnectionDialogCommand = new DelegateCommand(ShowConnectionDialog);
 
@@ -32,8 +33,10 @@ namespace DiskVolumesExplorer.Client
 
         private void ShowConnectionDialog()
         {
-            var connectionConfig = new ConnectionConfig();
-            _connectionDialogService.ShowConnectionDialog();
+            if (_connectionDialogService.ShowConnectionDialog() != true)
+            {
+                _closeDialogService.Close();
+            }
         }
     }
 }

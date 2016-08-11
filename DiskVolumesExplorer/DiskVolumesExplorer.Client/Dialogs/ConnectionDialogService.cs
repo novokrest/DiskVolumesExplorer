@@ -3,21 +3,17 @@ using DiskVolumesExplorer.Core;
 
 namespace DiskVolumesExplorer.Client.Dialogs
 {
-    public interface ICloseDialogService
-    {
-        void CloseDialog(bool result);
-    }
-
     internal interface IConnectionDialogService
     {
         bool? ShowConnectionDialog();
     }
 
-    internal class ConnectionDialogService : IConnectionDialogService, ICloseDialogService
+    internal class ConnectionDialogService : ICloseDialogService, IConnectionDialogService
     {
         private readonly Window _owner;
         private readonly IHypervisorServiceConnector _hypervisorServiceConnector;
 
+        private ICloseDialogService _connectionDialogCloseService;
         private Window _connectionDialog;
 
         public ConnectionDialogService(Window owner, IHypervisorServiceConnector hypervisorServiceConnector)
@@ -28,23 +24,29 @@ namespace DiskVolumesExplorer.Client.Dialogs
 
         public bool? ShowConnectionDialog()
         {
-            _connectionDialog = CreateConnectionDialog();
+            CreateConnectionDialog();
+            CreateConnectionDialogCloseService();
+
             return _connectionDialog.ShowDialog();
         }
 
-        public void CloseDialog(bool dialogResult)
+        public void CloseDialog(bool? dialogResult)
         {
-            _connectionDialog.DialogResult = dialogResult;
-            _connectionDialog.Close();
+            _connectionDialogCloseService.CloseDialog(dialogResult);
         }
 
-        private Window CreateConnectionDialog()
+        private void CreateConnectionDialog()
         {
             var connectionDialog = new ConnectionDialog(_owner);
             var connectionDialogViewModel = CreateConnectionDialogViewModel();
             connectionDialog.DataContext = connectionDialogViewModel;
 
-            return connectionDialog;
+            _connectionDialog = connectionDialog;
+        }
+
+        private void CreateConnectionDialogCloseService()
+        {
+            _connectionDialogCloseService = new CloseDialogService(_connectionDialog);
         }
 
         private ConnectionDialogViewModel CreateConnectionDialogViewModel()

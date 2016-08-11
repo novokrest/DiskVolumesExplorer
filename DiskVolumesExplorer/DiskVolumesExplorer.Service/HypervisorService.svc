@@ -1,1 +1,1 @@
-﻿<%@ ServiceHost Language="C#" Debug="true" Service="DiskVolumesExplorer.Service.MockHypervisorService" CodeBehind="HypervisorService.svc.cs" %>
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="DiskVolumesExplorer.Service.HypervisorService" CodeBehind="HypervisorService.svc.cs" %>

@@ -51,8 +51,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConnectionConfig.cs" />
+    <Compile Include="Configs\ConnectionConfig.cs" />
     <Compile Include="DiskCollection.cs" />
+    <Compile Include="Extensions\SecureStringExtension.cs" />
+    <Compile Include="Extensions\StringExtension.cs" />
     <Compile Include="IDisk.cs" />
     <Compile Include="IHypervisor.cs" />
     <Compile Include="IServiceConnector.cs" />
@@ -67,6 +69,7 @@
     <Compile Include="ServerService.cs" />
     <Compile Include="VmWareService.cs" />
     <Compile Include="VmWare\CustomSecurityAssertionBearer.cs" />
+    <Compile Include="VmWare\VmWareHypervisor.cs" />
     <Compile Include="VmWare\VmWareServiceConnection.cs" />
     <Compile Include="Volume.cs" />
   </ItemGroup>

@@ -164,7 +164,7 @@ namespace DiskVolumesExplorer.Core.VmWare
             }
         }
 
-        public ManagedObjectReference PropCol
+        public ManagedObjectReference PropertyCollector
         {
             get
             {
@@ -172,7 +172,7 @@ namespace DiskVolumesExplorer.Core.VmWare
             }
         }
 
-        public ManagedObjectReference Root
+        public ManagedObjectReference RootFolder
         {
             get
             {

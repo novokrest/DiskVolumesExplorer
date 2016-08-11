@@ -63,19 +63,20 @@
     <Compile Include="Components\CancelCloseBehavior.cs" />
     <Compile Include="Components\IconTypeToImageConverter.cs" />
     <Compile Include="Components\ReverseBooleanToVisibilityConverter.cs" />
-    <Compile Include="Dialogs\CloseDialogService.cs" />
+    <Compile Include="Dialogs\WindowCloseService.cs" />
     <Compile Include="Dialogs\ConnectionDialog.xaml.cs">
       <DependentUpon>ConnectionDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\ConnectionDialogViewModel.cs" />
     <Compile Include="Dialogs\ConnectionDialogService.cs" />
     <Compile Include="Extensions\SecureStringExtension.cs" />
+    <Compile Include="Hypervisor\Hypervisor.cs" />
+    <Compile Include="Hypervisor\HypervisorServiceConnector.cs" />
     <Compile Include="MainWindow\IconsProvider.cs" />
     <Compile Include="MainWindow\MainWindowCreator.cs" />
     <Compile Include="Components\PasswordHelper.cs" />
     <Compile Include="MainWindow\VolumeViewModel.cs" />
-    <Compile Include="ServerServiceProvider.cs" />
-    <Compile Include="Service References\VmWareServices\Reference.cs">
+    <Compile Include="Service References\Services\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -127,38 +128,25 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <None Include="Service References\VmWareServices\Hypervisor.wsdl" />
-    <None Include="Service References\VmWareServices\Hypervisor1.wsdl" />
-    <None Include="Service References\VmWareServices\Hypervisor1.xsd">
+    <None Include="Service References\Services\HypervisorService.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\VmWareServices\Hypervisor2.xsd">
+    <None Include="Service References\Services\HypervisorService1.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\Services\HypervisorService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\Services\HypervisorService31.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\Services\MockHypervisorService.wsdl" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadataStorage Include="Service References\VmWareServices\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\VmWareServices\Hypervisor.disco" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\VmWareServices\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\VmWareServices\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\VmWareServices\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DiskVolumesExplorer.Core\DiskVolumesExplorer.Core.csproj">
@@ -174,6 +162,24 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Volume3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\Services\HypervisorService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\Services\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\Services\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\Services\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

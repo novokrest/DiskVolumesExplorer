@@ -3,7 +3,9 @@ using System.Security;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using DiskVolumesExplorer.Client.Base;
+using DiskVolumesExplorer.Client.Services;
 using DiskVolumesExplorer.Core;
+using DiskVolumesExplorer.Core.Configs;
 using Prism.Commands;
 
 namespace DiskVolumesExplorer.Client.Dialogs
@@ -133,12 +135,12 @@ namespace DiskVolumesExplorer.Client.Dialogs
             return connectResult;
         }
 
-        private IConnectionConfig CreateConnectionConfig()
+        private ISecureConnectionConfig CreateConnectionConfig()
         {
-            return new ConnectionConfig
+            return new SecureConnectionConfig
             {
                 ServerAddress = _serverAddress,
-                UserName = _userName,
+                User = _userName,
                 Password = _password
             };
         }

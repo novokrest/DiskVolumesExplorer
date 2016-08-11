@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 using DiskVolumesExplorer.Client.Dialogs;
-using DiskVolumesExplorer.Core.Mocks;
+using DiskVolumesExplorer.Client.Hypervisor;
 
 namespace DiskVolumesExplorer.Client
 {
@@ -8,10 +8,12 @@ namespace DiskVolumesExplorer.Client
     {
         public static Window Create()
         {
-            var serverServiceConnector = new MockHypervisorServiceConnector();
+            var hypervisor = new Hypervisor.Hypervisor();
+            var serverServiceConnector = new HypervisorServiceConnector(hypervisor);
             var mainWindow = new MainWindow();
-            var dialogService = new ConnectionDialogService(mainWindow, serverServiceConnector);
-            var mainWindowViewModel = new MainWindowViewModel(dialogService);
+            var mainWindowCloseService = new WindowCloseService(mainWindow);
+            var connectionDialogService = new ConnectionDialogService(mainWindow, serverServiceConnector);
+            var mainWindowViewModel = new MainWindowViewModel(mainWindowCloseService, connectionDialogService);
             mainWindow.DataContext = mainWindowViewModel;
             return mainWindow;
         }
