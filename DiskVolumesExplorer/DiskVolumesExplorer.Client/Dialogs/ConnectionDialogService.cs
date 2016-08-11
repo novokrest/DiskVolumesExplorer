@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using DiskVolumesExplorer.Client.Hypervisor;
 using DiskVolumesExplorer.Core;
 
 namespace DiskVolumesExplorer.Client.Dialogs

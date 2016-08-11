@@ -3,7 +3,7 @@ using DiskVolumesExplorer.Core.Configs;
 
 namespace DiskVolumesExplorer.Core.Mocks
 {
-    public class MockHypervisorServiceConnector : IHypervisorServiceConnector
+    public class MockHypervisorServiceConnector
     {
         private bool _result = true;
 

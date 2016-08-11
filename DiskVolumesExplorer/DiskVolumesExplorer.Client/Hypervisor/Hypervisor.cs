@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using DiskVolumesExplorer.Client.Extensions;
 using DiskVolumesExplorer.Client.Services;
@@ -9,12 +10,12 @@ namespace DiskVolumesExplorer.Client.Hypervisor
     internal interface IHypervisor
     {
         Task ConnectAsync(ISecureConnectionConfig connectionConfig);
-        Task<string[]> GetVirtualMachineNamesAsync();
+        Task<IReadOnlyCollection<string>> GetVirtualMachineNamesAsync();
     }
 
     internal class Hypervisor : IHypervisor
     {
-        private HypervisorServiceClient _client;
+        private HypervisorServiceClient _hypervisorProxy;
         private ISecureConnectionConfig _connectionConfig;
 
         public Task ConnectAsync(ISecureConnectionConfig connectionConfig)
@@ -25,8 +26,8 @@ namespace DiskVolumesExplorer.Client.Hypervisor
 
         private void ConnectToService()
         {
-            _client = new HypervisorServiceClient();
-            _client.Connect(new ConnectionConfig()
+            _hypervisorProxy = new HypervisorServiceClient();
+            _hypervisorProxy.Connect(new ConnectionConfig
             {
                 ServerAddress = _connectionConfig.ServerAddress,
                 User = _connectionConfig.User,
@@ -34,9 +35,14 @@ namespace DiskVolumesExplorer.Client.Hypervisor
             });
         }
 
-        public Task<string[]> GetVirtualMachineNamesAsync()
+        public Task<IReadOnlyCollection<string>> GetVirtualMachineNamesAsync()
         {
-            throw new NotImplementedException();
+            return Task.Run((Func<IReadOnlyCollection<string>>) GetVirtualMachineNames);
+        }
+
+        private IReadOnlyCollection<string> GetVirtualMachineNames()
+        {
+            return _hypervisorProxy.GetVirtualMachineNames();
         } 
     }
 }

@@ -1,4 +1,5 @@
-﻿using DiskVolumesExplorer.Core;
+﻿using System.Linq;
+using DiskVolumesExplorer.Core;
 using DiskVolumesExplorer.Core.Configs;
 using DiskVolumesExplorer.Core.Extensions;
 using DiskVolumesExplorer.Core.Mocks;
@@ -23,7 +24,7 @@ namespace DiskVolumesExplorer.Service
 
         public string[] GetVirtualMachineNames()
         {
-            throw new System.NotImplementedException();
+            return _hypervisor.GetVirtualMachineNames().ToArray();
         }
 
         public IVirtualMachine GetVirtualMachine(string name)

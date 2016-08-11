@@ -14,9 +14,11 @@
             <i:InvokeCommandAction Command="{Binding ShowConnectionDialogCommand}"/>
         </i:EventTrigger>
     </i:Interaction.Triggers>
-    
+
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="5"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
@@ -53,7 +55,10 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
-            
         </DataGrid>
+        
+        <ComboBox Grid.Row="2" Grid.Column="0"
+                  ItemsSource="{Binding VirtualMachineNames}"/>
+        
     </Grid>
 </Window>

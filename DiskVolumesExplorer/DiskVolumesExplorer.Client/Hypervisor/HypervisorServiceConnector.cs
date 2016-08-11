@@ -5,7 +5,18 @@ using DiskVolumesExplorer.Core.Configs;
 
 namespace DiskVolumesExplorer.Client.Hypervisor
 {
-    internal class HypervisorServiceConnector : IHypervisorServiceConnector
+    internal interface IHypervisorServiceConnector
+    {
+        Task<bool> ConnectAsync(ISecureConnectionConfig connectionConfig);
+        Task CancelConnectingAsync();
+    }
+
+    internal interface IHypervisorServiceProvider
+    {
+        IHypervisor Hypervisor { get; }
+    }
+
+    internal class HypervisorServiceConnector : IHypervisorServiceConnector, IHypervisorServiceProvider
     {
         private readonly IHypervisor _hypervisor;
 
@@ -30,6 +41,15 @@ namespace DiskVolumesExplorer.Client.Hypervisor
         public Task CancelConnectingAsync()
         {
             throw new NotImplementedException();
+        }
+
+        public IHypervisor Hypervisor
+        {
+            get
+            {
+                Verifiers.Verify(_hypervisor != null);
+                return _hypervisor;
+            }
         }
     }
 }

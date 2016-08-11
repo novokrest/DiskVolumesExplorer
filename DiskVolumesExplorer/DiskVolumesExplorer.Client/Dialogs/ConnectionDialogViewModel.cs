@@ -3,8 +3,7 @@ using System.Security;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using DiskVolumesExplorer.Client.Base;
-using DiskVolumesExplorer.Client.Services;
-using DiskVolumesExplorer.Core;
+using DiskVolumesExplorer.Client.Hypervisor;
 using DiskVolumesExplorer.Core.Configs;
 using Prism.Commands;
 
