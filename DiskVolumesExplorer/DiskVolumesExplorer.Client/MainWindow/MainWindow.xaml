@@ -38,15 +38,12 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="5"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="5"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="5"/>
-            <ColumnDefinition Width="Auto"/>
-        </Grid.ColumnDefinitions>
 
-        <DockPanel Grid.Row="0" Grid.Column="0" 
+        <DockPanel Grid.Row="0"
                     HorizontalAlignment="Stretch">
             <Label Content="Choose virtual machine" 
                    Style="{StaticResource EndWithColon}"/>
@@ -83,7 +80,15 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <Grid Grid.Row="0" Grid.Column="0"
+        <ListBox x:Name="Disks" Grid.Row="4" ScrollViewer.CanContentScroll="False">
+            <ListBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel Orientation="Horizontal" VirtualizationMode="Recycling"/>
+                </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+        </ListBox>
+
+        <!--<Grid Grid.Row="0" Grid.Column="0"
               Grid.RowSpan="{Binding ElementName=MainGrid, Path=RowDefinitions.Count}"
               Grid.ColumnSpan="{Binding ElementName=MainGrid, Path=ColumnDefinitions.Count}"
               Visibility="{Binding CleanUp, Converter={StaticResource BooleanToVisibilityConverter}}">
@@ -99,6 +104,6 @@
                 <TextBlock Grid.Row="1" HorizontalAlignment="Center" Text="Closing..."/>
                 <ProgressBar Grid.Row="2" Height="10" IsIndeterminate="True"/>
             </Grid>
-        </Grid>
+        </Grid>-->
     </Grid>
 </Window>

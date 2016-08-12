@@ -74,6 +74,7 @@
     <Compile Include="Hypervisor\CleanupService.cs" />
     <Compile Include="Hypervisor\Hypervisor.cs" />
     <Compile Include="Hypervisor\HypervisorServiceConnector.cs" />
+    <Compile Include="Hypervisor\IHypervisorService.cs" />
     <Compile Include="Hypervisor\VirtualMachineNamesLoader.cs" />
     <Compile Include="MainWindow\IconsProvider.cs" />
     <Compile Include="MainWindow\MainWindowCreator.cs" />

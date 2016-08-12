@@ -14,6 +14,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiskVolumesExplorer.Client"
 		{94107C4C-DAEB-4BC5-9349-8B76EF4B67C7} = {94107C4C-DAEB-4BC5-9349-8B76EF4B67C7}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiskVolumeExplorer.HostService", "DiskVolumeExplorer.HostService\DiskVolumeExplorer.HostService.csproj", "{E94E03E1-6150-41B1-A571-C4714B0CF86A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,6 +38,10 @@ Global
 		{8F4BE51F-F107-4A60-80AC-5BB41CC21A47}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8F4BE51F-F107-4A60-80AC-5BB41CC21A47}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8F4BE51F-F107-4A60-80AC-5BB41CC21A47}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E94E03E1-6150-41B1-A571-C4714B0CF86A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E94E03E1-6150-41B1-A571-C4714B0CF86A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E94E03E1-6150-41B1-A571-C4714B0CF86A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E94E03E1-6150-41B1-A571-C4714B0CF86A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
