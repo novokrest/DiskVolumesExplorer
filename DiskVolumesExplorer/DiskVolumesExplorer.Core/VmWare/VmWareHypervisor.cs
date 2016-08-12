@@ -20,6 +20,11 @@ namespace DiskVolumesExplorer.Core.VmWare
             _connection.Connect(_connectionConfig.ServerAddress, _connectionConfig.User, _connectionConfig.Password.ConvertToString());
         }
 
+        public void Disconnect()
+        {
+            _connection.Disconnect();
+        }
+
         public IReadOnlyCollection<string> GetVirtualMachineNames()
         {
             ServiceContent serviceContent = _connection.ServiceContent;

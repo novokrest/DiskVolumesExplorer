@@ -22,6 +22,11 @@ namespace DiskVolumesExplorer.Service
             _hypervisor.Connect();
         }
 
+        public void Disconnect()
+        {
+            _hypervisor.Disconnect();
+        }
+
         public string[] GetVirtualMachineNames()
         {
             return _hypervisor.GetVirtualMachineNames().ToArray();
@@ -44,6 +49,11 @@ namespace DiskVolumesExplorer.Service
         };
 
         public void Connect(ConnectionConfig connectionConfig)
+        {
+            
+        }
+
+        public void Disconnect()
         {
             
         }

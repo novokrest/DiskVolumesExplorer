@@ -1,8 +1,6 @@
 ﻿using System.Runtime.Serialization;
-using System.Security;
 using System.ServiceModel;
 using DiskVolumesExplorer.Core;
-using DiskVolumesExplorer.Core.Extensions;
 
 namespace DiskVolumesExplorer.Service
 {
@@ -11,6 +9,9 @@ namespace DiskVolumesExplorer.Service
     {
         [OperationContract]
         void Connect(ConnectionConfig connectionConfig);
+
+        [OperationContract]
+        void Disconnect();
 
         [OperationContract]
         string[] GetVirtualMachineNames();

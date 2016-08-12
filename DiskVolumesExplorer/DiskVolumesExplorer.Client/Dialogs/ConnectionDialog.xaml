@@ -22,18 +22,19 @@
     <Grid Margin="10">
         <Grid.Resources>
             <ResourceDictionary>
-                <Style x:Key="EndWithColon" TargetType="Label">
-                    <Setter Property="HorizontalAlignment" Value="Right"/>
-                    <Setter Property="ContentStringFormat" Value="{}{0}:"/>
-                </Style>
-                <Style TargetType="TextBox">
-                    <Setter Property="Width" Value="200"></Setter>
-                </Style>
-                <components:BooleanToVisibleHiddenConverter x:Key="BooleanToVisibilityConverter"/>
-                <components:ReverseBooleanToVisibilityConverter x:Key="ReverseBooleanToVisibilityConverter"/>
+                <ResourceDictionary.MergedDictionaries>
+                    <ResourceDictionary Source="../Styles/General.xaml"/>
+                    <ResourceDictionary>
+                        <Style TargetType="TextBox">
+                            <Setter Property="Width" Value="200"></Setter>
+                        </Style>
+                        <components:BooleanToVisibleHiddenConverter x:Key="BooleanToVisibilityConverter"/>
+                        <components:ReverseBooleanToVisibilityConverter x:Key="ReverseBooleanToVisibilityConverter"/>
+                    </ResourceDictionary>
+                </ResourceDictionary.MergedDictionaries>
             </ResourceDictionary>
         </Grid.Resources>
-        
+
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="3"/>

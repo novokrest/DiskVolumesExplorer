@@ -9,13 +9,31 @@
         mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=local:MainWindowViewModel, IsDesignTimeCreatable=False}"
         Title="MainWindow" Height="350" Width="525">
 
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Styles/General.xaml"/>
+                <ResourceDictionary>
+                    <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction Command="{Binding ShowConnectionDialogCommand}"/>
         </i:EventTrigger>
+        <i:EventTrigger EventName="Closing">
+            <i:InvokeCommandAction Command="{Binding CloseCommand}"></i:InvokeCommandAction>
+        </i:EventTrigger>
     </i:Interaction.Triggers>
 
-    <Grid>
+    <i:Interaction.Behaviors>
+        <components:CancelCloseWindowBehavior CancelClose="{Binding CancelClose}" />
+    </i:Interaction.Behaviors>
+
+    <Grid x:Name="MainGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="5"/>
@@ -27,8 +45,16 @@
             <ColumnDefinition Width="5"/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        
-        <DataGrid ItemsSource="{Binding Volumes}"
+
+        <DockPanel Grid.Row="0" Grid.Column="0" 
+                    HorizontalAlignment="Stretch">
+            <Label Content="Choose virtual machine" 
+                   Style="{StaticResource EndWithColon}"/>
+            <ComboBox ItemsSource="{Binding VirtualMachineNames}"/>
+        </DockPanel>
+
+        <DataGrid Grid.Row="2" Grid.Column="0" 
+                  ItemsSource="{Binding Volumes}"
                   AutoGenerateColumns="False"
                   ColumnWidth="*">
             <DataGrid.Resources>
@@ -56,9 +82,23 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        
-        <ComboBox Grid.Row="2" Grid.Column="0"
-                  ItemsSource="{Binding VirtualMachineNames}"/>
-        
+
+        <Grid Grid.Row="0" Grid.Column="0"
+              Grid.RowSpan="{Binding ElementName=MainGrid, Path=RowDefinitions.Count}"
+              Grid.ColumnSpan="{Binding ElementName=MainGrid, Path=ColumnDefinitions.Count}"
+              Visibility="{Binding CleanUp, Converter={StaticResource BooleanToVisibilityConverter}}">
+
+            <Grid Background="Gray" Opacity="0.5"></Grid>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="1" HorizontalAlignment="Center" Text="Closing..."/>
+                <ProgressBar Grid.Row="2" Height="10" IsIndeterminate="True"/>
+            </Grid>
+        </Grid>
     </Grid>
 </Window>

@@ -5,6 +5,7 @@ using System.Windows.Input;
 using DiskVolumesExplorer.Client.Base;
 using DiskVolumesExplorer.Client.Hypervisor;
 using DiskVolumesExplorer.Core.Configs;
+using DiskVolumesExplorer.Core.Extensions;
 using Prism.Commands;
 
 namespace DiskVolumesExplorer.Client.Dialogs
@@ -29,6 +30,11 @@ namespace DiskVolumesExplorer.Client.Dialogs
             _hypervisorServiceConnector = hypervisorServiceConnector;
             _connectCommand = new DelegateCommand(Connect, CanConnect);
             _closeCommand = new DelegateCommand(Close);
+
+#if DEBUG
+            _serverAddress = "https://esx24.dev.amust.local/sdk";
+            _userName = "root";
+#endif
         }
 
         public ICommand ConnectCommand => _connectCommand;

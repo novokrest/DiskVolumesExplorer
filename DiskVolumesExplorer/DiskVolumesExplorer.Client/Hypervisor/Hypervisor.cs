@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using DiskVolumesExplorer.Client.Extensions;
 using DiskVolumesExplorer.Client.Services;
@@ -10,6 +11,7 @@ namespace DiskVolumesExplorer.Client.Hypervisor
     internal interface IHypervisor
     {
         Task ConnectAsync(ISecureConnectionConfig connectionConfig);
+        Task DisconnectAsync();
         Task<IReadOnlyCollection<string>> GetVirtualMachineNamesAsync();
     }
 
@@ -33,6 +35,17 @@ namespace DiskVolumesExplorer.Client.Hypervisor
                 User = _connectionConfig.User,
                 Password = _connectionConfig.Password.ConvertToString()
             });
+        }
+
+        public Task DisconnectAsync()
+        {
+            return Task.Run((Action) Disconnect);
+        }
+
+        private void Disconnect()
+        {
+            Thread.Sleep(5000);
+            _hypervisorProxy.Disconnect();
         }
 
         public Task<IReadOnlyCollection<string>> GetVirtualMachineNamesAsync()

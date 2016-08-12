@@ -58,6 +58,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Base\CleanUpViewModel.cs" />
     <Compile Include="Base\ErrorViewModel.cs" />
     <Compile Include="Components\BooleanToVisibleHiddenConverter.cs" />
     <Compile Include="Components\CancelCloseBehavior.cs" />
@@ -70,6 +71,7 @@
     <Compile Include="Dialogs\ConnectionDialogViewModel.cs" />
     <Compile Include="Dialogs\ConnectionDialogService.cs" />
     <Compile Include="Extensions\SecureStringExtension.cs" />
+    <Compile Include="Hypervisor\CleanupService.cs" />
     <Compile Include="Hypervisor\Hypervisor.cs" />
     <Compile Include="Hypervisor\HypervisorServiceConnector.cs" />
     <Compile Include="Hypervisor\VirtualMachineNamesLoader.cs" />
@@ -102,6 +104,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Styles\General.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainWindow\MainWindowViewModel.cs" />

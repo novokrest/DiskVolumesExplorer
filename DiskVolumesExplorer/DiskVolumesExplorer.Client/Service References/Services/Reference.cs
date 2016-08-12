@@ -100,6 +100,12 @@ namespace DiskVolumesExplorer.Client.Services {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IHypervisorService/Connect", ReplyAction="http://tempuri.org/IHypervisorService/ConnectResponse")]
         System.Threading.Tasks.Task ConnectAsync(DiskVolumesExplorer.Client.Services.ConnectionConfig connectionConfig);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IHypervisorService/Disconnect", ReplyAction="http://tempuri.org/IHypervisorService/DisconnectResponse")]
+        void Disconnect();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IHypervisorService/Disconnect", ReplyAction="http://tempuri.org/IHypervisorService/DisconnectResponse")]
+        System.Threading.Tasks.Task DisconnectAsync();
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IHypervisorService/GetVirtualMachineNames", ReplyAction="http://tempuri.org/IHypervisorService/GetVirtualMachineNamesResponse")]
         string[] GetVirtualMachineNames();
         
@@ -148,6 +154,14 @@ namespace DiskVolumesExplorer.Client.Services {
         
         public System.Threading.Tasks.Task ConnectAsync(DiskVolumesExplorer.Client.Services.ConnectionConfig connectionConfig) {
             return base.Channel.ConnectAsync(connectionConfig);
+        }
+        
+        public void Disconnect() {
+            base.Channel.Disconnect();
+        }
+        
+        public System.Threading.Tasks.Task DisconnectAsync() {
+            return base.Channel.DisconnectAsync();
         }
         
         public string[] GetVirtualMachineNames() {
