@@ -52,7 +52,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configs\ConnectionConfig.cs" />
-    <Compile Include="DiskCollection.cs" />
     <Compile Include="Extensions\SecureStringExtension.cs" />
     <Compile Include="Extensions\StringExtension.cs" />
     <Compile Include="IDisk.cs" />
@@ -63,6 +62,7 @@
     <Compile Include="Mocks\MockDiskCollection.cs" />
     <Compile Include="Mocks\MockHypervisorServiceConnector.cs" />
     <Compile Include="Mocks\MockVirtualMachine.cs" />
+    <Compile Include="Mocks\MockVirtualMachinesRepository.cs" />
     <Compile Include="Mocks\MockVolumeCollection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServerService.cs" />
@@ -71,7 +71,7 @@
     <Compile Include="VmWare\CustomSecurityAssertionBearer.cs" />
     <Compile Include="VmWare\VmWareHypervisor.cs" />
     <Compile Include="VmWare\VmWareServiceConnection.cs" />
-    <Compile Include="Volume.cs" />
+    <Compile Include="IVolume.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

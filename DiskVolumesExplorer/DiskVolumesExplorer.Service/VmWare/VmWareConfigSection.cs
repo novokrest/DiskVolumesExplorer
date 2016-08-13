@@ -1,10 +1,10 @@
 ﻿using System.Configuration;
 
-namespace DiskVolumeExplorer.HostService.VmWare
+namespace DiskVolumesExplorer.Service.VmWare
 {
-    public class VmWareServiceConfigSection : ConfigurationSection
+    public class VmWareConfigSection : ConfigurationSection, IVmWareConfig
     {
-        public const string SectionName = "VmWareService";
+        public const string SectionName = "VmWareConfig";
 
         private const string UrlProperty = "Url";
         private const string UserProperty = "User";
@@ -20,11 +20,11 @@ namespace DiskVolumeExplorer.HostService.VmWare
         public string Password => (string) this[PasswordProperty];
     }
 
-    public static class VmWareServiceConfigLoader
+    internal static class VmWareConfigLoader
     {
-        public static VmWareServiceConfigSection LoadConfig()
+        public static IVmWareConfig LoadConfig()
         {
-            return (VmWareServiceConfigSection) ConfigurationManager.GetSection(VmWareServiceConfigSection.SectionName);
+            return (VmWareConfigSection) ConfigurationManager.GetSection(VmWareConfigSection.SectionName);
         }
     }
 }

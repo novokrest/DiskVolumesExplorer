@@ -352,7 +352,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>http://localhost:54731/HypervisorService.svc</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>knovokreshchenov@amust.local</Upn>
+          <Upn>DESKTOP-N5DU0F4\wnovokrest</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>

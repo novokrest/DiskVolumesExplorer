@@ -6,6 +6,8 @@ namespace DiskVolumesExplorer.Client.Base
     {
         private bool _cancelClose;
         private bool _cleanUp;
+        private bool _isProcessing;
+        private string _processingMessage;
 
         public CleanUpViewModel()
         {
@@ -25,17 +27,42 @@ namespace DiskVolumesExplorer.Client.Base
             }
         }
 
-        public bool CleanUp
+        public bool IsProcessing
         {
-            get { return _cleanUp; }
+            get { return _isProcessing; }
             set
             {
-                if (_cleanUp != value)
+                if (_isProcessing != value)
                 {
-                    _cleanUp = value;
+                    _isProcessing = value;
                     OnPropertyChanged();
                 }
             }
+        }
+
+        public string ProcessingMessage
+        {
+            get { return _processingMessage; }
+            set
+            {
+                if (_processingMessage != value)
+                {
+                    _processingMessage = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        public void StartProcessing(string message)
+        {
+            ProcessingMessage = message;
+            IsProcessing = true;
+        }
+
+        public void StopProcessing()
+        {
+            IsProcessing = false;
+            ProcessingMessage = null;
         }
     }
 }

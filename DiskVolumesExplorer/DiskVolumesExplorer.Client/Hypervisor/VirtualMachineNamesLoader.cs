@@ -5,7 +5,7 @@ namespace DiskVolumesExplorer.Client.Hypervisor
 {
     internal interface IVirtualMachineNamesLoader
     {
-        Task<IReadOnlyCollection<string>> LoadVirtualMachineNamesAsync();
+        Task<IReadOnlyList<string>> LoadVirtualMachineNamesAsync();
     }
 
     internal class VirtualMachineNamesLoader : IVirtualMachineNamesLoader
@@ -17,10 +17,10 @@ namespace DiskVolumesExplorer.Client.Hypervisor
             _hypervisorServiceProvider = hypervisorServiceProvider;
         }
 
-        public Task<IReadOnlyCollection<string>> LoadVirtualMachineNamesAsync()
+        public Task<IReadOnlyList<string>> LoadVirtualMachineNamesAsync()
         {
-            IHypervisor hypervisor = _hypervisorServiceProvider.Hypervisor;
-            return hypervisor.GetVirtualMachineNamesAsync();
+            IHypervisorService hypervisorService = _hypervisorServiceProvider.HypervisorService;
+            return hypervisorService.GetVirtualMachineNamesAsync();
 
         }
     }

@@ -1,27 +1,36 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace DiskVolumesExplorer.Core.Mocks
 {
-    class MockDiskCollection : MockCollection<MockDisk>, IDiskCollection
+    class MockDiskCollection : MockCollection<MockDisk, IDrive>, IDriveCollection
     {
         public MockDiskCollection(int disksCount = 5)
             : base(disksCount)
         {
-            Disks = Elements;
         }
 
-        public IReadOnlyCollection<IDisk> Disks { get; }
+        public IDrive this[int index] => Elements[index];
     }
 
-    internal class MockDisk : CountableInstance, IDisk
+    internal class MockDisk : CountableInstance, IDrive
     {
         public MockDisk()
         {
-            Name = $"Disk #{Number}";
+            Title = $"Disk #{Number}";
+            Type = "Basic";
+            SizeInBytes = 1024;
+            Status = "Online";
             Volumes = new MockVolumeCollection();
         }
 
-        public string Name { get; }
+        public string Title { get; }
+
+        public ulong SizeInBytes { get; }
+
+        public string Status { get; }
+
+        public string Type { get; }
 
         public IVolumeCollection Volumes { get; }
     }

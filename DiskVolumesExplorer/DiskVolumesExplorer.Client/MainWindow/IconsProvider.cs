@@ -6,16 +6,19 @@ namespace DiskVolumesExplorer.Client
 {
     enum IconType
     {
+        DriveIcon,
         VolumeIcon
     }
 
     class IconsProvider
     {
         private static readonly Uri BaseUri = new Uri("pack://application:,,,/DiskVolumesExplorer.Client;component/Images/");
+        private static readonly Uri DriveIconUri = new Uri(BaseUri, "Drive20x10.png");
         private static readonly Uri VolumeIconUri = new Uri(BaseUri, "Volume3.png");
 
         private static readonly Dictionary<IconType, Uri> IconUris = new Dictionary<IconType, Uri>()
         {
+            {IconType.DriveIcon, DriveIconUri},
             {IconType.VolumeIcon, VolumeIconUri}
         };
 

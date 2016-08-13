@@ -7,6 +7,8 @@ using DiskVolumesExplorer.Client.Base;
 using DiskVolumesExplorer.Client.Dialogs;
 using DiskVolumesExplorer.Client.Hypervisor;
 using Prism.Commands;
+using DiskVolumesExplorer.Core;
+using DiskVolumesExplorer.Client.Extensions;
 
 namespace DiskVolumesExplorer.Client
 {
@@ -15,33 +17,37 @@ namespace DiskVolumesExplorer.Client
         private readonly IWindowCloseService _closeDialogService;
         private readonly IConnectionDialogService _connectionDialogService;
         private readonly IVirtualMachineNamesLoader _virtualMachineNamesLoader;
+        private readonly IVirtualMachineDisksLoader _virtualMachineDisksLoader;
         private readonly ICleanUpService _cleanUpService;
 
         private readonly DelegateCommand _showConnectionDialogCommand;
         private readonly DelegateCommand _closeCommand;
+        private readonly DelegateCommand _loadVirtualMachineDisks;
 
-        private IReadOnlyCollection<string> _virtualMachineNames = Array.AsReadOnly(new string[] {});
+        private IReadOnlyList<string> _virtualMachineNames = Array.AsReadOnly(new string[] {});
+        private int _selectedVirtualMachineIndex;
+        private IReadOnlyCollection<DriveViewModel> _drives;
 
-        public MainWindowViewModel(IWindowCloseService closeDialogService, IConnectionDialogService connectionDialogService, IVirtualMachineNamesLoader virtualMachineNamesLoader, ICleanUpService cleanUpService)
+        public MainWindowViewModel(IWindowCloseService closeDialogService, 
+                                   IConnectionDialogService connectionDialogService, 
+                                   IVirtualMachineNamesLoader virtualMachineNamesLoader,
+                                   IVirtualMachineDisksLoader virtualMachineDisksLoader,
+                                   ICleanUpService cleanUpService)
         {
             _closeDialogService = closeDialogService;
             _connectionDialogService = connectionDialogService;
             _virtualMachineNamesLoader = virtualMachineNamesLoader;
+            _virtualMachineDisksLoader = virtualMachineDisksLoader;
             _cleanUpService= cleanUpService;
 
             _showConnectionDialogCommand = new DelegateCommand(ShowConnectionDialog);
             _closeCommand = new DelegateCommand(Close);
-            CancelClose = true;
+            _loadVirtualMachineDisks = new DelegateCommand(LoadVirtualMachineDisks, CanLoadVirtualMachineDisks);
 
-            Volumes = new ObservableCollection<VolumeViewModel>()
-            {
-                new VolumeViewModel(),
-                new VolumeViewModel(),
-                new VolumeViewModel()
-            };
+            CancelClose = true;
         }
 
-        public IReadOnlyCollection<string> VirtualMachineNames
+        public IReadOnlyList<string> VirtualMachineNames
         {
             get { return _virtualMachineNames; }
             set
@@ -49,6 +55,37 @@ namespace DiskVolumesExplorer.Client
                 if (_virtualMachineNames != value)
                 {
                     _virtualMachineNames = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        public int SelectedVirtualMachineIndex
+        {
+            get { return _selectedVirtualMachineIndex; }
+            set
+            {
+                if (_selectedVirtualMachineIndex != value)
+                {
+                    _selectedVirtualMachineIndex = value;
+                    OnPropertyChanged();
+                    if (_selectedVirtualMachineIndex != -1)
+                    {
+                        LoadVirtualMachineDisks();
+                    }
+                    
+                }
+            }
+        }
+
+        public IReadOnlyCollection<DriveViewModel> Drives
+        {
+            get { return _drives; }
+            set
+            {
+                if (_drives != value)
+                {
+                    _drives = value;
                     OnPropertyChanged();
                 }
             }
@@ -78,15 +115,37 @@ namespace DiskVolumesExplorer.Client
 
         private async Task CleanUpAsync()
         {
-            CleanUp = true;
+            StartProcessing("Clean up...");
             await _cleanUpService.CleanUpAsync();
-            CleanUp = false;
+            StopProcessing();
         }
 
         private async void LoadVirtualMachineNames()
         {
-            IReadOnlyCollection<string> virtualMachineNames = await _virtualMachineNamesLoader.LoadVirtualMachineNamesAsync();
+            StartProcessing($"Loading virtual machine names...");
+            IReadOnlyList<string> virtualMachineNames = await _virtualMachineNamesLoader.LoadVirtualMachineNamesAsync();
             VirtualMachineNames = virtualMachineNames;
+            StopProcessing();
+        }
+
+        private async void LoadVirtualMachineDisks()
+        {
+            StartProcessing($"Loading disks and volumes for '{CurrentVirtualMachineName}'...");
+            var disks = await LoadVirtualMachineDisksAsync();
+            Drives = disks.ExtractDriveViewModelCollection();
+            StopProcessing();
+        }
+
+        private string CurrentVirtualMachineName => _virtualMachineNames[_selectedVirtualMachineIndex];
+
+        private Task<IDriveCollection> LoadVirtualMachineDisksAsync()
+        {
+            return _virtualMachineDisksLoader.LoadVirtualMachineDisks(_virtualMachineNames[_selectedVirtualMachineIndex]);
+        }
+
+        private bool CanLoadVirtualMachineDisks()
+        {
+            return _selectedVirtualMachineIndex != -1;
         }
     }
 }

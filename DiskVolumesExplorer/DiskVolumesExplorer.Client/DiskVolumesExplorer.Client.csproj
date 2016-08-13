@@ -70,12 +70,21 @@
     </Compile>
     <Compile Include="Dialogs\ConnectionDialogViewModel.cs" />
     <Compile Include="Dialogs\ConnectionDialogService.cs" />
+    <Compile Include="Extensions\DriveCollectionExtension.cs" />
     <Compile Include="Extensions\SecureStringExtension.cs" />
+    <Compile Include="Extensions\VolumeCollectionExtension.cs" />
     <Compile Include="Hypervisor\CleanupService.cs" />
     <Compile Include="Hypervisor\Hypervisor.cs" />
     <Compile Include="Hypervisor\HypervisorServiceConnector.cs" />
     <Compile Include="Hypervisor\IHypervisorService.cs" />
+    <Compile Include="Hypervisor\Mocks\DelayTasks.cs" />
+    <Compile Include="Hypervisor\Mocks\MockCleanupService.cs" />
+    <Compile Include="Hypervisor\Mocks\MockHypervisor.cs" />
+    <Compile Include="Hypervisor\Mocks\MockHypervisorServiceConnector.cs" />
+    <Compile Include="Hypervisor\Mocks\MockHypervisorServiceProvider.cs" />
+    <Compile Include="Hypervisor\VirtualMachineDisksLoader.cs" />
     <Compile Include="Hypervisor\VirtualMachineNamesLoader.cs" />
+    <Compile Include="MainWindow\DriveViewModel.cs" />
     <Compile Include="MainWindow\IconsProvider.cs" />
     <Compile Include="MainWindow\MainWindowCreator.cs" />
     <Compile Include="Components\PasswordHelper.cs" />
@@ -188,6 +197,12 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Drive.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Drive20x10.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

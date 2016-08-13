@@ -1,22 +1,23 @@
-﻿using System.Threading;
+﻿using DiskVolumesExplorer.Core;
 
 namespace DiskVolumesExplorer.Client
 {
     internal class VolumeViewModel
     {
-        private static int _counter;
+        private readonly IVolume _volume;
 
-        public VolumeViewModel()
+        public VolumeViewModel(IVolume volume)
         {
-            int number = Interlocked.Increment(ref _counter);
-            Name = $"Volume #{number}";
-            Layout = "Simple";
+            _volume = volume;
             Icon = IconType.VolumeIcon;
         }
 
-        public string Name { get; }
-        public string Layout { get; }
         public IconType Icon { get; }
 
+        public string Title => _volume.Title;
+        public ulong FreeSpaceInBytes => _volume.FreeSpaceInBytes;
+        public ulong CapacityInBytes => _volume.CapacityInBytes;
+        public string FileSystem => _volume.FileSystem;
+        public string Status => _volume.Status;
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 using System.ServiceModel;
-using DiskVolumesExplorer.Core;
+using System.ServiceModel.Web;
 
 namespace DiskVolumesExplorer.Service
 {
@@ -8,28 +8,27 @@ namespace DiskVolumesExplorer.Service
     internal interface IHypervisorService
     {
         [OperationContract]
-        void Connect(ConnectionConfig connectionConfig);
+        [WebGet(UriTemplate = "vm", ResponseFormat = WebMessageFormat.Json)]
+        string[] GetVirtualMachines();
 
         [OperationContract]
-        void Disconnect();
-
-        [OperationContract]
-        string[] GetVirtualMachineNames();
-
-        [OperationContract]
-        IVirtualMachine GetVirtualMachine(string name);
+        [WebGet(UriTemplate = "vm/{vmName}", ResponseFormat = WebMessageFormat.Json)]
+        DriveData[] GetDrives(string vmName);
     }
 
     [DataContract]
-    internal class ConnectionConfig
+    internal class DriveData
     {
         [DataMember]
-        public string ServerAddress { get; set; }
+        public string Title { get; set; }
 
         [DataMember]
-        public string User { get; set; }
+        public string Type { get; set; }
 
         [DataMember]
-        public string Password { get; set; }
+        public ulong SizeInBytes { get; set; }
+
+        [DataMember]
+        public string Status { get; set; }
     }
 }

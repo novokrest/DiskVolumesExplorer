@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using System;
 
 namespace DiskVolumesExplorer.Core.Mocks
 {
@@ -6,24 +6,31 @@ namespace DiskVolumesExplorer.Core.Mocks
     {
         public MockVolume()
         {
-            Name = $"Volume {Number}";
-            FreeSpace = 10000;
-            Capacity = 3*FreeSpace;
+            Title = $"Volume {Number}";
+            FreeSpaceInBytes = 10000;
+            CapacityInBytes = 3*FreeSpaceInBytes;
+            FileSystem = "NTFS";
+            Status = "Healthy";
         }
 
-        public string Name { get; }
-        public ulong FreeSpace { get; }
-        public ulong Capacity { get; }
+        public string Title { get; }
+
+        public ulong FreeSpaceInBytes { get; }
+
+        public ulong CapacityInBytes { get; }
+
+        public string FileSystem { get; }
+
+        public string Status { get; }
     }
 
-    internal class MockVolumeCollection : MockCollection<MockVolume>, IVolumeCollection
+    internal class MockVolumeCollection : MockCollection<MockVolume, IVolume>, IVolumeCollection
     {
         public MockVolumeCollection(int volumesCount = 5)
             : base(volumesCount)
         {
-            Volumes = Elements;
         }
 
-        public IReadOnlyCollection<IVolume> Volumes { get; }
+        public IVolume this[int index] => Elements[index];
     }
 }

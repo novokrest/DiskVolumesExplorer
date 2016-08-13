@@ -1,25 +1,37 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace DiskVolumesExplorer.Core.Mocks
 {
-    internal abstract class MockCollection<T> where T: new()
+    internal abstract class MockCollection<T, IT> : IEnumerable<IT> where T: IT, new()
     {
         protected MockCollection(int elementsCount)
         {
             Elements = CreateElements(elementsCount);
         }
 
-        private static List<T> CreateElements(int elements)
+        private static List<IT> CreateElements(int elementsCount)
         {
-            var volumes = new List<T>();
-            for (int i = 0; i < elements; i++)
+            var elements = new List<IT>();
+            for (int i = 0; i < elementsCount; i++)
             {
-                volumes.Add(new T());
+                elements.Add(new T());
             }
 
-            return volumes;
+            return elements;
         }
 
-        protected IReadOnlyCollection<T> Elements { get; } 
+        public IEnumerator<IT> GetEnumerator()
+        {
+            return Elements.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return Elements.GetEnumerator();
+        }
+
+        protected IReadOnlyList<IT> Elements { get; } 
     }
 }
