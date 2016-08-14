@@ -15,21 +15,27 @@ namespace DiskVolumesExplorer.Client.Services {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ConnectionConfig", Namespace="http://schemas.datacontract.org/2004/07/DiskVolumesExplorer.Service")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="DriveData", Namespace="http://schemas.datacontract.org/2004/07/DiskVolumesExplorer.Service.Data")]
     [System.SerializableAttribute()]
-    public partial class ConnectionConfig : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class DriveData : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string PasswordField;
+        private ulong SizeInBytesField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string ServerAddressField;
+        private string StatusField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string UserField;
+        private string TitleField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string TypeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private DiskVolumesExplorer.Client.Services.VolumeData[] VolumesField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -42,40 +48,175 @@ namespace DiskVolumesExplorer.Client.Services {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Password {
+        public ulong SizeInBytes {
             get {
-                return this.PasswordField;
+                return this.SizeInBytesField;
             }
             set {
-                if ((object.ReferenceEquals(this.PasswordField, value) != true)) {
-                    this.PasswordField = value;
-                    this.RaisePropertyChanged("Password");
+                if ((this.SizeInBytesField.Equals(value) != true)) {
+                    this.SizeInBytesField = value;
+                    this.RaisePropertyChanged("SizeInBytes");
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string ServerAddress {
+        public string Status {
             get {
-                return this.ServerAddressField;
+                return this.StatusField;
             }
             set {
-                if ((object.ReferenceEquals(this.ServerAddressField, value) != true)) {
-                    this.ServerAddressField = value;
-                    this.RaisePropertyChanged("ServerAddress");
+                if ((object.ReferenceEquals(this.StatusField, value) != true)) {
+                    this.StatusField = value;
+                    this.RaisePropertyChanged("Status");
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string User {
+        public string Title {
             get {
-                return this.UserField;
+                return this.TitleField;
             }
             set {
-                if ((object.ReferenceEquals(this.UserField, value) != true)) {
-                    this.UserField = value;
-                    this.RaisePropertyChanged("User");
+                if ((object.ReferenceEquals(this.TitleField, value) != true)) {
+                    this.TitleField = value;
+                    this.RaisePropertyChanged("Title");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Type {
+            get {
+                return this.TypeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TypeField, value) != true)) {
+                    this.TypeField = value;
+                    this.RaisePropertyChanged("Type");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public DiskVolumesExplorer.Client.Services.VolumeData[] Volumes {
+            get {
+                return this.VolumesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.VolumesField, value) != true)) {
+                    this.VolumesField = value;
+                    this.RaisePropertyChanged("Volumes");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="VolumeData", Namespace="http://schemas.datacontract.org/2004/07/DiskVolumesExplorer.Service.Data")]
+    [System.SerializableAttribute()]
+    public partial class VolumeData : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private ulong CapacityInBytesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string FileSystemField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private ulong FreeSpaceInBytesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string StatusField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string TitleField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public ulong CapacityInBytes {
+            get {
+                return this.CapacityInBytesField;
+            }
+            set {
+                if ((this.CapacityInBytesField.Equals(value) != true)) {
+                    this.CapacityInBytesField = value;
+                    this.RaisePropertyChanged("CapacityInBytes");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string FileSystem {
+            get {
+                return this.FileSystemField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.FileSystemField, value) != true)) {
+                    this.FileSystemField = value;
+                    this.RaisePropertyChanged("FileSystem");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public ulong FreeSpaceInBytes {
+            get {
+                return this.FreeSpaceInBytesField;
+            }
+            set {
+                if ((this.FreeSpaceInBytesField.Equals(value) != true)) {
+                    this.FreeSpaceInBytesField = value;
+                    this.RaisePropertyChanged("FreeSpaceInBytes");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Status {
+            get {
+                return this.StatusField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.StatusField, value) != true)) {
+                    this.StatusField = value;
+                    this.RaisePropertyChanged("Status");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Title {
+            get {
+                return this.TitleField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TitleField, value) != true)) {
+                    this.TitleField = value;
+                    this.RaisePropertyChanged("Title");
                 }
             }
         }
@@ -94,31 +235,17 @@ namespace DiskVolumesExplorer.Client.Services {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="Services.IHypervisorService")]
     public interface IHypervisorService {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IHypervisorService/Connect", ReplyAction="http://tempuri.org/IHypervisorService/ConnectResponse")]
-        void Connect(DiskVolumesExplorer.Client.Services.ConnectionConfig connectionConfig);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IHypervisorService/GetVirtualMachines", ReplyAction="http://tempuri.org/IHypervisorService/GetVirtualMachinesResponse")]
+        string[] GetVirtualMachines();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IHypervisorService/Connect", ReplyAction="http://tempuri.org/IHypervisorService/ConnectResponse")]
-        System.Threading.Tasks.Task ConnectAsync(DiskVolumesExplorer.Client.Services.ConnectionConfig connectionConfig);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IHypervisorService/GetVirtualMachines", ReplyAction="http://tempuri.org/IHypervisorService/GetVirtualMachinesResponse")]
+        System.Threading.Tasks.Task<string[]> GetVirtualMachinesAsync();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IHypervisorService/Disconnect", ReplyAction="http://tempuri.org/IHypervisorService/DisconnectResponse")]
-        void Disconnect();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IHypervisorService/GetDrives", ReplyAction="http://tempuri.org/IHypervisorService/GetDrivesResponse")]
+        DiskVolumesExplorer.Client.Services.DriveData[] GetDrives(string vmName);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IHypervisorService/Disconnect", ReplyAction="http://tempuri.org/IHypervisorService/DisconnectResponse")]
-        System.Threading.Tasks.Task DisconnectAsync();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IHypervisorService/GetVirtualMachineNames", ReplyAction="http://tempuri.org/IHypervisorService/GetVirtualMachineNamesResponse")]
-        string[] GetVirtualMachineNames();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IHypervisorService/GetVirtualMachineNames", ReplyAction="http://tempuri.org/IHypervisorService/GetVirtualMachineNamesResponse")]
-        System.Threading.Tasks.Task<string[]> GetVirtualMachineNamesAsync();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IHypervisorService/GetVirtualMachine", ReplyAction="http://tempuri.org/IHypervisorService/GetVirtualMachineResponse")]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(DiskVolumesExplorer.Client.Services.ConnectionConfig))]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(string[]))]
-        object GetVirtualMachine(string name);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IHypervisorService/GetVirtualMachine", ReplyAction="http://tempuri.org/IHypervisorService/GetVirtualMachineResponse")]
-        System.Threading.Tasks.Task<object> GetVirtualMachineAsync(string name);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IHypervisorService/GetDrives", ReplyAction="http://tempuri.org/IHypervisorService/GetDrivesResponse")]
+        System.Threading.Tasks.Task<DiskVolumesExplorer.Client.Services.DriveData[]> GetDrivesAsync(string vmName);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -148,36 +275,20 @@ namespace DiskVolumesExplorer.Client.Services {
                 base(binding, remoteAddress) {
         }
         
-        public void Connect(DiskVolumesExplorer.Client.Services.ConnectionConfig connectionConfig) {
-            base.Channel.Connect(connectionConfig);
+        public string[] GetVirtualMachines() {
+            return base.Channel.GetVirtualMachines();
         }
         
-        public System.Threading.Tasks.Task ConnectAsync(DiskVolumesExplorer.Client.Services.ConnectionConfig connectionConfig) {
-            return base.Channel.ConnectAsync(connectionConfig);
+        public System.Threading.Tasks.Task<string[]> GetVirtualMachinesAsync() {
+            return base.Channel.GetVirtualMachinesAsync();
         }
         
-        public void Disconnect() {
-            base.Channel.Disconnect();
+        public DiskVolumesExplorer.Client.Services.DriveData[] GetDrives(string vmName) {
+            return base.Channel.GetDrives(vmName);
         }
         
-        public System.Threading.Tasks.Task DisconnectAsync() {
-            return base.Channel.DisconnectAsync();
-        }
-        
-        public string[] GetVirtualMachineNames() {
-            return base.Channel.GetVirtualMachineNames();
-        }
-        
-        public System.Threading.Tasks.Task<string[]> GetVirtualMachineNamesAsync() {
-            return base.Channel.GetVirtualMachineNamesAsync();
-        }
-        
-        public object GetVirtualMachine(string name) {
-            return base.Channel.GetVirtualMachine(name);
-        }
-        
-        public System.Threading.Tasks.Task<object> GetVirtualMachineAsync(string name) {
-            return base.Channel.GetVirtualMachineAsync(name);
+        public System.Threading.Tasks.Task<DiskVolumesExplorer.Client.Services.DriveData[]> GetDrivesAsync(string vmName) {
+            return base.Channel.GetDrivesAsync(vmName);
         }
     }
 }

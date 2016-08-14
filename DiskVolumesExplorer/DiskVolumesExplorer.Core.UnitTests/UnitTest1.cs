@@ -1,4 +1,5 @@
-﻿using DiskVolumesExplorer.Core.Extensions;
+﻿using DiskVolumesExplorer.Core.Configs;
+using DiskVolumesExplorer.Core.Extensions;
 using DiskVolumesExplorer.Core.VmWare;
 using NUnit.Framework;
 
@@ -39,9 +40,9 @@ namespace DiskVolumesExplorer.Core.UnitTests
 
         }
 
-        private IConnectionConfig CreateConnectionConfig()
+        private ISecureConnectionConfig CreateConnectionConfig()
         {
-            return new ConnectionConfig
+            return new SecureConnectionConfig
             {
                 ServerAddress = @"https://esx24.dev.amust.local/sdk",
                 User = @"root",

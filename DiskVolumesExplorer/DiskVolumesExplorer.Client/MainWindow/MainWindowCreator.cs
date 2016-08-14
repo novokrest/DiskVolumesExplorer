@@ -2,6 +2,7 @@
 using DiskVolumesExplorer.Client.Dialogs;
 using DiskVolumesExplorer.Client.Hypervisor;
 using DiskVolumesExplorer.Client.Hypervisor.Mocks;
+using DiskVolumesExplorer.Client.Hypervisor.Web;
 
 namespace DiskVolumesExplorer.Client
 {
@@ -9,15 +10,15 @@ namespace DiskVolumesExplorer.Client
     {
         public static Window Create()
         {
-            var serverServiceConnector = new MockHypervisorServiceConnector();
-            var hypervisorServiceProvider = new MockHypervisorServiceProvider();
-            var virtualMachineNamesLoader = new VirtualMachineNamesLoader(hypervisorServiceProvider);
-            var virtualMachineDisksLoader = new VirtualMachineDisksLoader(hypervisorServiceProvider);
+            var hypervisorServiceProvider = new WebHypervisorServiceProvider();
+            var asyncHypervisorServiceProvider = new AsyncHypervisorServiceProviderAdapter(hypervisorServiceProvider);
+            var virtualMachineNamesLoader = new VirtualMachineNamesLoader(asyncHypervisorServiceProvider);
+            var virtualMachineDisksLoader = new VirtualMachineDisksLoader(asyncHypervisorServiceProvider);
             var cleanupService = new MockCleanupService();
 
             var mainWindow = new MainWindow();
             var mainWindowCloseService = new WindowCloseService(mainWindow);
-            var connectionDialogService = new ConnectionDialogService(mainWindow, serverServiceConnector);
+            var connectionDialogService = new ConnectionDialogService(mainWindow, hypervisorServiceProvider);
             var mainWindowViewModel = new MainWindowViewModel(mainWindowCloseService, connectionDialogService, virtualMachineNamesLoader, virtualMachineDisksLoader, cleanupService);
             mainWindow.DataContext = mainWindowViewModel;
 

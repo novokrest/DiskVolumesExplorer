@@ -43,6 +43,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -62,6 +63,7 @@
     <Compile Include="Base\ErrorViewModel.cs" />
     <Compile Include="Components\BooleanToVisibleHiddenConverter.cs" />
     <Compile Include="Components\CancelCloseBehavior.cs" />
+    <Compile Include="Components\CountToBooleanConverter.cs" />
     <Compile Include="Components\IconTypeToImageConverter.cs" />
     <Compile Include="Components\ReverseBooleanToVisibilityConverter.cs" />
     <Compile Include="Dialogs\WindowCloseService.cs" />
@@ -73,10 +75,13 @@
     <Compile Include="Extensions\DriveCollectionExtension.cs" />
     <Compile Include="Extensions\SecureStringExtension.cs" />
     <Compile Include="Extensions\VolumeCollectionExtension.cs" />
+    <Compile Include="Hypervisor\AsyncHypervisorServiceProviderAdapter.cs" />
     <Compile Include="Hypervisor\CleanupService.cs" />
-    <Compile Include="Hypervisor\Hypervisor.cs" />
+    <Compile Include="Hypervisor\Web\WebHypervisorServiceProvider.cs" />
+    <Compile Include="Hypervisor\Web\WebHypervisorService.cs" />
     <Compile Include="Hypervisor\HypervisorServiceConnector.cs" />
-    <Compile Include="Hypervisor\IHypervisorService.cs" />
+    <Compile Include="Hypervisor\AsyncHypervisorService.cs" />
+    <Compile Include="Hypervisor\HypervisorServiceProvider.cs" />
     <Compile Include="Hypervisor\Mocks\DelayTasks.cs" />
     <Compile Include="Hypervisor\Mocks\MockCleanupService.cs" />
     <Compile Include="Hypervisor\Mocks\MockHypervisor.cs" />
@@ -94,6 +99,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Services\DriveData.cs" />
+    <Compile Include="Services\DriveDataCollection.cs" />
+    <Compile Include="Services\VolumeData.cs" />
+    <Compile Include="Services\VolumeDataCollection.cs" />
     <Page Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -145,19 +154,22 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <None Include="Service References\Services\HypervisorService.xsd">
+    <None Include="Service References\Services\Arrays.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\Services\HypervisorService1.xsd">
+    <None Include="Service References\Services\DiskVolumesExplorer.Client.Services.DriveData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\Services\DiskVolumesExplorer.Service.Data.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\Services\HypervisorService2.xsd">
+    <None Include="Service References\Services\service.wsdl" />
+    <None Include="Service References\Services\service.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\Services\HypervisorService31.xsd">
+    <None Include="Service References\Services\service1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\Services\MockHypervisorService.wsdl" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -181,10 +193,13 @@
     <Resource Include="Images\Volume3.png" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Service References\Services\" />
+    <Resource Include="Images\Drive.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\Services\HypervisorService.disco" />
+    <Resource Include="Images\Drive20x10.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\Services\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\Services\configuration91.svcinfo" />
@@ -197,12 +212,6 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\Drive.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\Drive20x10.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

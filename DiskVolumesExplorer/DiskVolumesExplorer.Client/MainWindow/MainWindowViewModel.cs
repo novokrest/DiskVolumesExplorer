@@ -20,9 +20,9 @@ namespace DiskVolumesExplorer.Client
         private readonly IVirtualMachineDisksLoader _virtualMachineDisksLoader;
         private readonly ICleanUpService _cleanUpService;
 
-        private readonly DelegateCommand _showConnectionDialogCommand;
         private readonly DelegateCommand _closeCommand;
-        private readonly DelegateCommand _loadVirtualMachineDisks;
+        private readonly DelegateCommand _loadVirtualMachinesCommand;
+        private readonly DelegateCommand _loadVirtualMachineDisksCommand;
 
         private IReadOnlyList<string> _virtualMachineNames = Array.AsReadOnly(new string[] {});
         private int _selectedVirtualMachineIndex;
@@ -40,9 +40,9 @@ namespace DiskVolumesExplorer.Client
             _virtualMachineDisksLoader = virtualMachineDisksLoader;
             _cleanUpService= cleanUpService;
 
-            _showConnectionDialogCommand = new DelegateCommand(ShowConnectionDialog);
             _closeCommand = new DelegateCommand(Close);
-            _loadVirtualMachineDisks = new DelegateCommand(LoadVirtualMachineDisks, CanLoadVirtualMachineDisks);
+            _loadVirtualMachinesCommand = new DelegateCommand(LoadVirtualMachines);
+            _loadVirtualMachineDisksCommand = new DelegateCommand(LoadVirtualMachineDisks, CanLoadVirtualMachineDisks);
 
             CancelClose = true;
         }
@@ -93,17 +93,13 @@ namespace DiskVolumesExplorer.Client
 
         public ObservableCollection<VolumeViewModel> Volumes { get; set; }
 
-        public ICommand ShowConnectionDialogCommand => _showConnectionDialogCommand;
+        public ICommand LoadVirtualMachinesCommand => _loadVirtualMachinesCommand;
         public ICommand CloseCommand => _closeCommand;
 
-        private void ShowConnectionDialog()
+        private void LoadVirtualMachines()
         {
-            if (_connectionDialogService.ShowConnectionDialog() != true)
-            {
-                Close();
-            }
-
-            LoadVirtualMachineNames();
+            if (_connectionDialogService.ShowConnectionDialog() != true) return;
+            LoadVirtualMachinesAsync();
         }
 
         private async void Close()
@@ -120,7 +116,7 @@ namespace DiskVolumesExplorer.Client
             StopProcessing();
         }
 
-        private async void LoadVirtualMachineNames()
+        private async void LoadVirtualMachinesAsync()
         {
             StartProcessing($"Loading virtual machine names...");
             IReadOnlyList<string> virtualMachineNames = await _virtualMachineNamesLoader.LoadVirtualMachineNamesAsync();

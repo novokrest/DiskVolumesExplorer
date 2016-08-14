@@ -1,5 +1,4 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
 namespace DiskVolumesExplorer.Client.Hypervisor
 {
@@ -10,16 +9,9 @@ namespace DiskVolumesExplorer.Client.Hypervisor
 
     internal class HypervisorConnectionCloser : ICleanUpService
     {
-        private readonly IHypervisor _hypervisor;
-
-        public HypervisorConnectionCloser(IHypervisor hypervisor)
-        {
-            _hypervisor = hypervisor;
-        }
-
         public Task CleanUpAsync()
         {
-            return _hypervisor.DisconnectAsync();
+            return Task.Delay(2000);
         }
     }
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="28f78168-1d99-4c27-83d0-39195d57cd63" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="d0e1f275-e033-4339-a371-c03bac572264" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -19,15 +19,14 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:54731/HypervisorService.svc" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://localhost:8733/Design_Time_Addresses/hypervisor/mex" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="HypervisorService.disco" MetadataType="Disco" ID="271f4d8b-f469-4be5-a57c-6408a1144f7c" SourceId="1" SourceUrl="http://localhost:54731/HypervisorService.svc?disco" />
-    <MetadataFile FileName="MockHypervisorService.wsdl" MetadataType="Wsdl" ID="37354558-b321-443e-a4e4-14f306779362" SourceId="1" SourceUrl="http://localhost:54731/HypervisorService.svc?wsdl" />
-    <MetadataFile FileName="HypervisorService2.xsd" MetadataType="Schema" ID="9f3b322c-df2a-4396-b98f-a39cef7269d9" SourceId="1" SourceUrl="http://localhost:54731/HypervisorService.svc?xsd=xsd0" />
-    <MetadataFile FileName="HypervisorService1.xsd" MetadataType="Schema" ID="2d10d1c3-8177-42de-9ef6-bd4fe3275e3c" SourceId="1" SourceUrl="http://localhost:54731/HypervisorService.svc?xsd=xsd1" />
-    <MetadataFile FileName="HypervisorService.xsd" MetadataType="Schema" ID="dfb55c13-5638-4491-a01b-f1c5e2cc3fb4" SourceId="1" SourceUrl="http://localhost:54731/HypervisorService.svc?xsd=xsd2" />
-    <MetadataFile FileName="HypervisorService31.xsd" MetadataType="Schema" ID="fedd4972-ce40-4304-9886-ebf8c146f50e" SourceId="1" SourceUrl="http://localhost:54731/HypervisorService.svc?xsd=xsd3" />
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="b6a7cfa3-2815-4737-be40-3da5ed8eaf93" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/hypervisor/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="46e21a18-94f3-43cf-ba48-cc89da8ba920" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/hypervisor/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="35f4f08b-1ce2-4a0e-a5a4-a2c2ca7f522b" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/hypervisor/mex" />
+    <MetadataFile FileName="Arrays.xsd" MetadataType="Schema" ID="f5d0f9a4-1573-40d8-849e-7e89412059be" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/hypervisor/mex" />
+    <MetadataFile FileName="DiskVolumesExplorer.Service.Data.xsd" MetadataType="Schema" ID="073fe102-9c78-4c33-8f61-0f533f154ab6" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/hypervisor/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DiskVolumesExplorer.Client.Hypervisor.Mocks
+﻿namespace DiskVolumesExplorer.Client.Hypervisor.Mocks
 {
-    internal sealed class MockHypervisorServiceProvider : IHypervisorServiceProvider
+    internal sealed class MockAsyncHypervisorServiceProvider : IAsyncHypervisorServiceProvider
     {
-        public MockHypervisorServiceProvider()
+        public MockAsyncHypervisorServiceProvider()
         {
-            HypervisorService = new MockHypervisorService();
+            AsyncHypervisorService = new MockHypervisorService();
         }
 
-        public IHypervisorService HypervisorService { get; }
+        public IAsyncHypervisorService AsyncHypervisorService { get; }
     }
 }

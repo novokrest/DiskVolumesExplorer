@@ -5,4 +5,7 @@
         <Setter Property="HorizontalAlignment" Value="Right"/>
         <Setter Property="ContentStringFormat" Value="{}{0}:"/>
     </Style>
+    <Style TargetType="Button">
+        <Setter Property="Padding" Value="5"/>
+    </Style>
 </ResourceDictionary>

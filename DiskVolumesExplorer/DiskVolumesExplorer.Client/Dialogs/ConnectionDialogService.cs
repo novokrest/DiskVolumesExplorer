@@ -1,6 +1,5 @@
 ﻿using System.Windows;
-using DiskVolumesExplorer.Client.Hypervisor;
-using DiskVolumesExplorer.Core;
+using DiskVolumesExplorer.Core.Configs;
 
 namespace DiskVolumesExplorer.Client.Dialogs
 {
@@ -12,15 +11,15 @@ namespace DiskVolumesExplorer.Client.Dialogs
     internal class ConnectionDialogService : ICloseDialogService, IConnectionDialogService
     {
         private readonly Window _owner;
-        private readonly IHypervisorServiceConnector _hypervisorServiceConnector;
+        private readonly IConnectionConfigObserver _connectionConfigObserver;
 
         private ICloseDialogService _connectionDialogCloseService;
         private Window _connectionDialog;
 
-        public ConnectionDialogService(Window owner, IHypervisorServiceConnector hypervisorServiceConnector)
+        public ConnectionDialogService(Window owner, IConnectionConfigObserver connectionConfigObserver)
         {
             _owner = owner;
-            _hypervisorServiceConnector = hypervisorServiceConnector;
+            _connectionConfigObserver = connectionConfigObserver;
         }
 
         public bool? ShowConnectionDialog()
@@ -52,7 +51,7 @@ namespace DiskVolumesExplorer.Client.Dialogs
 
         private ConnectionDialogViewModel CreateConnectionDialogViewModel()
         {
-            return new ConnectionDialogViewModel(this, _hypervisorServiceConnector);
+            return new ConnectionDialogViewModel(this, _connectionConfigObserver);
         }
     }
 }

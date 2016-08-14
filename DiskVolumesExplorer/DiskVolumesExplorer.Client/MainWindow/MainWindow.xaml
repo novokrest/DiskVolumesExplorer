@@ -16,15 +16,16 @@
                 <ResourceDictionary>
                     <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
                     <components:IconTypeToImageConverter x:Key="IconTypeToImageConverter"/>
+                    <components:CountToBooleanConverter x:Key="CountToBooleanConverter"/>
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
     
     <i:Interaction.Triggers>
-        <i:EventTrigger EventName="Loaded">
+        <!--<i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction Command="{Binding ShowConnectionDialogCommand}"/>
-        </i:EventTrigger>
+        </i:EventTrigger>-->
         <i:EventTrigger EventName="Closing">
             <i:InvokeCommandAction Command="{Binding CloseCommand}"></i:InvokeCommandAction>
         </i:EventTrigger>
@@ -46,9 +47,17 @@
         <DockPanel Grid.Row="0"
                     HorizontalAlignment="Stretch">
             <Label Content="Choose virtual machine" 
-                   Style="{StaticResource EndWithColon}"/>
+                   Style="{StaticResource EndWithColon}"
+                   DockPanel.Dock="Left"/>
+            <Button Content="LOAD" DockPanel.Dock="Right"
+                    Command="{Binding LoadVirtualMachinesCommand}"
+                    Width="55"
+                    Padding="5"
+                    Margin="10,0,5,0 "/>
             <ComboBox ItemsSource="{Binding VirtualMachineNames}"
-                      SelectedIndex="{Binding SelectedVirtualMachineIndex, Mode=OneWayToSource}"/>
+                      SelectedIndex="{Binding SelectedVirtualMachineIndex, Mode=OneWayToSource}"
+                      IsEnabled="{Binding Source=VirtualMachineNames, Path=Count, Converter={StaticResource CountToBooleanConverter}}"/>
+            
         </DockPanel>
 
         <DataGrid Grid.Row="2" Grid.Column="0" 

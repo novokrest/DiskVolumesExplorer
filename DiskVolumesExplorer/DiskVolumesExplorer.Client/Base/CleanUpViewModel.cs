@@ -5,7 +5,6 @@ namespace DiskVolumesExplorer.Client.Base
     class CleanUpViewModel : BindableBase
     {
         private bool _cancelClose;
-        private bool _cleanUp;
         private bool _isProcessing;
         private string _processingMessage;
 

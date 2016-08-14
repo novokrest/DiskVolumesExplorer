@@ -7,34 +7,24 @@
         xmlns:components="clr-namespace:DiskVolumesExplorer.Client.Components"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=local:ConnectionDialogViewModel, IsDesignTimeCreatable=False}"
-        Title="ConnectionDialog" Height="180" Width="300" SizeToContent="WidthAndHeight">
+        Title="ConnectionDialog" Height="192.243" Width="299.156" SizeToContent="WidthAndHeight">
 
-    <i:Interaction.Triggers>
-        <i:EventTrigger EventName="Closing">
-            <i:InvokeCommandAction Command="{Binding CloseCommand}"></i:InvokeCommandAction>
-        </i:EventTrigger>
-    </i:Interaction.Triggers>
-
-    <i:Interaction.Behaviors>
-        <components:CancelCloseWindowBehavior CancelClose="{Binding CancelClose}" />
-    </i:Interaction.Behaviors>
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Styles/General.xaml"/>
+                <ResourceDictionary>
+                    <Style TargetType="TextBox">
+                        <Setter Property="Width" Value="200"></Setter>
+                    </Style>
+                    <components:BooleanToVisibleHiddenConverter x:Key="BooleanToVisibilityConverter"/>
+                    <components:ReverseBooleanToVisibilityConverter x:Key="ReverseBooleanToVisibilityConverter"/>
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
 
     <Grid Margin="10">
-        <Grid.Resources>
-            <ResourceDictionary>
-                <ResourceDictionary.MergedDictionaries>
-                    <ResourceDictionary Source="../Styles/General.xaml"/>
-                    <ResourceDictionary>
-                        <Style TargetType="TextBox">
-                            <Setter Property="Width" Value="200"></Setter>
-                        </Style>
-                        <components:BooleanToVisibleHiddenConverter x:Key="BooleanToVisibilityConverter"/>
-                        <components:ReverseBooleanToVisibilityConverter x:Key="ReverseBooleanToVisibilityConverter"/>
-                    </ResourceDictionary>
-                </ResourceDictionary.MergedDictionaries>
-            </ResourceDictionary>
-        </Grid.Resources>
-
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="3"/>
@@ -72,22 +62,13 @@
                      components:PasswordHelper.Attach="True"
                      components:PasswordHelper.Password="{Binding Password, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <ProgressBar Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2"
-                     Height="10"
-                     IsIndeterminate="True"
-                     Visibility="{Binding IsConnecting, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-        
-        <Label Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2"
-               Foreground="DarkRed"
-               VerticalAlignment="Top"
-               Content="{Binding ErrorMessage}"
-               Visibility="{Binding IsError, Converter={StaticResource BooleanToVisibilityConverter}}"/>
-        
-        <Button Grid.Row="8" Grid.Column="1"
-                Content="CONNECT"
-                IsEnabled="{Binding IsConnecting, Converter={StaticResource ReverseBooleanToVisibilityConverter}}"
-                Height="30" Padding="5"
-                HorizontalAlignment="Right"
-                Command="{Binding ConnectCommand}"/>
+        <StackPanel Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2"
+                    Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Content="Cancel" Command="{Binding CloseCommand}" 
+                    Width="55"
+                    Margin="0,0,10,0"/>
+            <Button Content="OK" Command="{Binding SaveServerSettingsCommand}"
+                    Width="55"/>
+        </StackPanel>
     </Grid>
 </Window>

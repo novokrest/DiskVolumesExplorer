@@ -14,17 +14,17 @@ namespace DiskVolumesExplorer.Client.Hypervisor
 
     internal sealed class VirtualMachineDisksLoader : IVirtualMachineDisksLoader
     {
-        private readonly IHypervisorServiceProvider _hypervisorServiceProvider;
+        private readonly IAsyncHypervisorServiceProvider _hypervisorServiceProvider;
 
-        public VirtualMachineDisksLoader(IHypervisorServiceProvider hypervisorServiceProvider)
+        public VirtualMachineDisksLoader(IAsyncHypervisorServiceProvider hypervisorServiceProvider)
         {
             _hypervisorServiceProvider = hypervisorServiceProvider;
         }
 
         public Task<IDriveCollection> LoadVirtualMachineDisks(string virtualMachineName)
         {
-            var hypervisorService = _hypervisorServiceProvider.HypervisorService;
-            return hypervisorService.GetVirtualMachineDisksAsync(virtualMachineName);
+            var hypervisorService = _hypervisorServiceProvider.AsyncHypervisorService;
+            return hypervisorService.GetDrivesAsync(virtualMachineName);
         }
     }
 }

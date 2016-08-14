@@ -31,13 +31,15 @@ namespace DiskVolumesExplorer.Service
         {
             using (var service = new HypervisorServiceWindowsHost())
             {
+                Console.WriteLine("Starting Hypervisor service...");
                 service.Start();
-                Console.WriteLine("Hypervisor service started ...");
+                Console.WriteLine("Hypervisor service has been started.");
 
                 var pressedKey = Console.ReadKey();
 
+                Console.WriteLine("Stopping Hypervisor service...");
                 service.Stop();
-                Console.WriteLine("Hypervisor service stopped ...");
+                Console.WriteLine("Hypervisor service has been stopped.");
 
                 return pressedKey;
             }

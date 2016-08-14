@@ -11,9 +11,9 @@ namespace DiskVolumesExplorer.Client.Hypervisor
         Task CancelConnectingAsync();
     }
 
-    internal interface IHypervisorServiceProvider
+    internal interface IAsyncHypervisorServiceProvider
     {
-        IHypervisorService HypervisorService { get; }
+        IAsyncHypervisorService AsyncHypervisorService { get; }
     }
 
     //internal class HypervisorServiceConnector : IHypervisorServiceConnector, IHypervisorServiceProvider

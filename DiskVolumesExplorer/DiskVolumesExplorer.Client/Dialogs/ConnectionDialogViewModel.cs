@@ -1,43 +1,38 @@
 ﻿using System;
 using System.Security;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using DiskVolumesExplorer.Client.Base;
-using DiskVolumesExplorer.Client.Hypervisor;
 using DiskVolumesExplorer.Core.Configs;
-using DiskVolumesExplorer.Core.Extensions;
 using Prism.Commands;
 
 namespace DiskVolumesExplorer.Client.Dialogs
 {
     internal class ConnectionDialogViewModel : ErrorViewModel
     {
-        private readonly IHypervisorServiceConnector _hypervisorServiceConnector;
+        private readonly IConnectionConfigObserver _connectionConfigObserver;
         private readonly ICloseDialogService _closeDialogService;
 
-        private readonly DelegateCommand _connectCommand;
+        private readonly DelegateCommand _saveServerSettingsCommand;
         private readonly DelegateCommand _closeCommand;
 
         private string _serverAddress;
         private string _userName;
         private SecureString _password;
-        private bool _connecting;
-        private bool _cancelClose;
 
-        public ConnectionDialogViewModel(ICloseDialogService closeDialogService, IHypervisorServiceConnector hypervisorServiceConnector)
+        public ConnectionDialogViewModel(ICloseDialogService closeDialogService, IConnectionConfigObserver connectionConfigObserver)
         {
             _closeDialogService = closeDialogService;
-            _hypervisorServiceConnector = hypervisorServiceConnector;
-            _connectCommand = new DelegateCommand(Connect, CanConnect);
+            _connectionConfigObserver = connectionConfigObserver;
+            _saveServerSettingsCommand = new DelegateCommand(SaveServerSettings, CanSaveServerSettings);
             _closeCommand = new DelegateCommand(Close);
 
 #if DEBUG
-            _serverAddress = "https://esx24.dev.amust.local/sdk";
-            _userName = "root";
+            _serverAddress = "localhost:8733";
+            _userName = "user";
 #endif
         }
 
-        public ICommand ConnectCommand => _connectCommand;
+        public ICommand SaveServerSettingsCommand => _saveServerSettingsCommand;
         public ICommand CloseCommand => _closeCommand;
 
         public string ServerAddress
@@ -48,7 +43,7 @@ namespace DiskVolumesExplorer.Client.Dialogs
                 if (!string.Equals(_serverAddress, value, StringComparison.Ordinal))
                 {
                     _serverAddress = value;
-                    _connectCommand.RaiseCanExecuteChanged();
+                    _saveServerSettingsCommand.RaiseCanExecuteChanged();
                     OnPropertyChanged();
                 }
             }
@@ -62,7 +57,7 @@ namespace DiskVolumesExplorer.Client.Dialogs
                 if (!string.Equals(_userName, value, StringComparison.Ordinal))
                 {
                     _userName = value;
-                    _connectCommand.RaiseCanExecuteChanged();
+                    _saveServerSettingsCommand.RaiseCanExecuteChanged();
                     OnPropertyChanged();
                 }
             }
@@ -76,34 +71,7 @@ namespace DiskVolumesExplorer.Client.Dialogs
                 if (_password != value)
                 {
                     _password = value;
-                    _connectCommand.RaiseCanExecuteChanged();
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        public bool IsConnecting
-        {
-            get { return _connecting; }
-            set
-            {
-                if (_connecting != value)
-                {
-                    _connecting = value;
-                    CancelClose = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
-
-        public bool CancelClose
-        {
-            get { return _cancelClose; }
-            set
-            {
-                if (_cancelClose != value)
-                {
-                    _cancelClose = value;
+                    _saveServerSettingsCommand.RaiseCanExecuteChanged();
                     OnPropertyChanged();
                 }
             }
@@ -114,30 +82,11 @@ namespace DiskVolumesExplorer.Client.Dialogs
             return !string.IsNullOrEmpty(_serverAddress) && !string.IsNullOrEmpty(_userName) && _password != null;
         }
 
-        private async void Connect()
+        private void SaveServerSettings()
         {
-            DisableError();
-
-            if (await ConnectAsync())
-            {
-                _closeDialogService.CloseDialog(true);
-            }
-            else
-            {
-                SetError("Failed to connect to server service");
-            }
-        }
-
-        private async Task<bool> ConnectAsync()
-        {
-            IsConnecting = true;
-
             var connectionConfig = CreateConnectionConfig();
-            bool connectResult = await _hypervisorServiceConnector.ConnectAsync(connectionConfig);
-
-            IsConnecting = false;
-
-            return connectResult;
+            _connectionConfigObserver.SetConnectionConfig(connectionConfig);
+            _closeDialogService.CloseDialog(true);
         }
 
         private ISecureConnectionConfig CreateConnectionConfig()
@@ -150,14 +99,14 @@ namespace DiskVolumesExplorer.Client.Dialogs
             };
         }
 
-        private bool CanConnect()
+        private bool CanSaveServerSettings()
         {
             return IsValid();
         }
 
         private void Close()
         {
-            
+            _closeDialogService.CloseDialog(false);
         }
     }
 }
