@@ -111,6 +111,9 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>E:\Github\DiskVolumesExplorer\DiskVolumesExplorer\DiskVolumesExplorer.Core.Native\VmWare\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+    </ProjectReference>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -142,11 +145,13 @@
     <ClInclude Include="resource.h" />
     <ClInclude Include="Stdafx.h" />
     <ClInclude Include="VixDiskLibErrWrapper.h" />
-    <ClInclude Include="VixLibraryInitializer.h" />
+    <ClInclude Include="VixDiskLibInitializer.h" />
     <ClInclude Include="VixDiskLibUtils.h" />
+    <ClInclude Include="VixMntApiInitializer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp" />
+    <ClCompile Include="DiskVolumesManager.cpp" />
     <ClCompile Include="Stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -154,7 +159,8 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="VixDiskLibErrWrapper.cpp" />
-    <ClCompile Include="VixLibraryInitializer.cpp" />
+    <ClCompile Include="VixDiskLibInitializer.cpp" />
+    <ClCompile Include="VixMntApiInitializer.cpp" />
     <ClCompile Include="VmWareUtils.cpp" />
   </ItemGroup>
   <ItemGroup>

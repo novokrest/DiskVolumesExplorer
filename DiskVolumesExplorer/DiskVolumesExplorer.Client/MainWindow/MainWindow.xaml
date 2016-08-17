@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DiskVolumesExplorer.Client"
+        xmlns:controls="clr-namespace:DiskVolumesExplorer.Client.Controls"
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:components="clr-namespace:DiskVolumesExplorer.Client.Components"
         mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=local:MainWindowViewModel, IsDesignTimeCreatable=False}"
@@ -17,6 +18,7 @@
                     <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
                     <components:IconTypeToImageConverter x:Key="IconTypeToImageConverter"/>
                     <components:CountToBooleanConverter x:Key="CountToBooleanConverter"/>
+                    <components:DrivesToVolumesConverter x:Key="DrivesToVolumesConverter"/>
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
@@ -59,86 +61,30 @@
                       IsEnabled="{Binding Source=VirtualMachineNames, Path=Count, Converter={StaticResource CountToBooleanConverter}}"/>
             
         </DockPanel>
-
+ 
         <DataGrid Grid.Row="2" Grid.Column="0" 
-                  ItemsSource="{Binding Volumes}"
+                  ItemsSource="{Binding Drives, Converter={StaticResource DrivesToVolumesConverter}}"
                   AutoGenerateColumns="False"
                   ColumnWidth="*">
-            <DataGrid.Columns>
-                <DataGridTemplateColumn SortMemberPath="Name" Width="Auto">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Horizontal">
-                                <Image Source="{Binding Icon, Converter={StaticResource IconTypeToImageConverter}}"/>
-                                <TextBlock Text="{Binding Name}" VerticalAlignment="Center"/>
-                            </StackPanel>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTemplateColumn Width="*">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding Layout}"></TextBlock>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-            </DataGrid.Columns>
-        </DataGrid>
-
-        <DataGrid x:Name="DisksDataGrid" Grid.Row="4" 
-                  ItemsSource="{Binding Drives}"
-                  AutoGenerateColumns="False"
-                  HeadersVisibility="None"
-                  ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                  ScrollViewer.CanContentScroll="True">
-            <DataGrid.Columns>
-                <DataGridTemplateColumn Width="Auto">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <StackPanel x:Name="DriveHeader">
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn SortMemberPath="Name" Width="Auto">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
-                                    <Image Source="{Binding Icon, Converter={StaticResource IconTypeToImageConverter}}" Margin="5,5"/>
-                                    <TextBlock Text="{Binding Title}"/>
+                                    <Image Source="{Binding Icon, Converter={StaticResource IconTypeToImageConverter}}"/>
+                                    <TextBlock Text="{Binding Title}" VerticalAlignment="Center"/>
                                 </StackPanel>
-                                <TextBlock Text="{Binding Type}"/>
-                                <TextBlock Text="{Binding SizeInBytes}"/>
-                                <TextBlock Text="{Binding Status}"/>
-                            </StackPanel>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTemplateColumn Width="*">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <ListBox x:Name="Volumes" ItemsSource="{Binding Volumes}">
-                                <ListBox.ItemsPanel>
-                                    <ItemsPanelTemplate>
-                                        <VirtualizingStackPanel Orientation="Horizontal" VirtualizationMode="Recycling"/>
-                                    </ItemsPanelTemplate>
-                                </ListBox.ItemsPanel>
-                                <ListBox.ItemContainerStyle>
-                                    <Style TargetType="ListBoxItem">
-                                        <Setter Property="BorderThickness" Value="1"/>
-                                        <Setter Property="BorderBrush" Value="Black"/>
-                                        <Setter Property="Margin" Value="2,0"/>
-                                    </Style>
-                                </ListBox.ItemContainerStyle>
-                                <ListBox.ItemTemplate>
-                                    <DataTemplate>
-                                        <StackPanel>
-                                            <TextBlock Text="{Binding Title}"/>
-                                            <TextBlock Text="{Binding CapacityInBytes}"/>
-                                            <TextBlock Text="{Binding FileSystem}"/>
-                                            <TextBlock Text="{Binding Status}"/>
-                                        </StackPanel>
-                                    </DataTemplate>
-                                </ListBox.ItemTemplate>
-                            </ListBox>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-            </DataGrid.Columns>
-        </DataGrid>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Binding="{Binding FileSystem}"/>
+                    <DataGridTextColumn Binding="{Binding CapacityInBytes}"/>
+                    <DataGridTextColumn Binding="{Binding FreeSpaceInBytes}"/>
+                    <DataGridTextColumn Binding="{Binding Status}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+
+        <controls:DiskVolumesControl Grid.Row="4" />
 
         <!--<ListBox x:Name="Disks" Grid.Row="4" ScrollViewer.CanContentScroll="False">
             <ListBox.ItemsPanel>

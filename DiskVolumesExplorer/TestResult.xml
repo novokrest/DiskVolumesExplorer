@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<test-run id="2" testcasecount="3" result="Failed" total="3" passed="2" failed="1" inconclusive="0" skipped="0" asserts="1" engine-version="3.4.1.0" clr-version="4.0.30319.42000" start-time="2016-08-15 00:53:14Z" end-time="2016-08-15 00:53:17Z" duration="3.598038">
+  <command-line><![CDATA["C:\Program Files (x86)\NUnit.org\nunit-console\nunit3-console.exe" DiskVolumesExplorer.Core.UnitTests/bin/Debug/DiskVolumesExplorer.Core.UnitTests.dll]]></command-line>
+  <test-suite type="Assembly" id="0-1005" name="DiskVolumesExplorer.Core.UnitTests.dll" fullname="E:\Github\DiskVolumesExplorer\DiskVolumesExplorer\DiskVolumesExplorer.Core.UnitTests\bin\Debug\DiskVolumesExplorer.Core.UnitTests.dll" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2016-08-15 00:53:14Z" end-time="2016-08-15 00:53:17Z" duration="3.537710" total="3" passed="2" failed="1" inconclusive="0" skipped="0" asserts="1">
+    <environment framework-version="3.4.1.0" clr-version="4.0.30319.42000" os-version="Microsoft Windows NT 10.0.10586.0" platform="Win32NT" cwd="E:\Github\DiskVolumesExplorer\DiskVolumesExplorer" machine-name="DESKTOP-N5DU0F4" user="wnovokrest" user-domain="DESKTOP-N5DU0F4" culture="en-US" uiculture="en-US" os-architecture="x64" />
+    <settings>
+      <setting name="WorkDirectory" value="E:\Github\DiskVolumesExplorer\DiskVolumesExplorer" />
+      <setting name="ImageRuntimeVersion" value="4.0.30319" />
+      <setting name="ImageTargetFrameworkName" value=".NETFramework,Version=v4.5.2" />
+      <setting name="ImageRequiresX86" value="False" />
+      <setting name="ImageRequiresDefaultAppDomainAssemblyResolver" value="False" />
+      <setting name="NumberOfTestWorkers" value="8" />
+    </settings>
+    <properties>
+      <property name="_PID" value="25444" />
+      <property name="_APPDOMAIN" value="test-domain-" />
+    </properties>
+    <failure>
+      <message><![CDATA[One or more child tests had errors]]></message>
+    </failure>
+    <test-suite type="TestSuite" id="0-1006" name="DiskVolumesExplorer" fullname="DiskVolumesExplorer" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2016-08-15 00:53:14Z" end-time="2016-08-15 00:53:17Z" duration="3.520707" total="3" passed="2" failed="1" inconclusive="0" skipped="0" asserts="1">
+      <failure>
+        <message><![CDATA[One or more child tests had errors]]></message>
+      </failure>
+      <test-suite type="TestSuite" id="0-1007" name="Core" fullname="DiskVolumesExplorer.Core" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2016-08-15 00:53:14Z" end-time="2016-08-15 00:53:17Z" duration="3.517227" total="3" passed="2" failed="1" inconclusive="0" skipped="0" asserts="1">
+        <failure>
+          <message><![CDATA[One or more child tests had errors]]></message>
+        </failure>
+        <test-suite type="TestSuite" id="0-1008" name="UnitTests" fullname="DiskVolumesExplorer.Core.UnitTests" runstate="Runnable" testcasecount="3" result="Failed" site="Child" start-time="2016-08-15 00:53:14Z" end-time="2016-08-15 00:53:17Z" duration="3.514226" total="3" passed="2" failed="1" inconclusive="0" skipped="0" asserts="1">
+          <failure>
+            <message><![CDATA[One or more child tests had errors]]></message>
+          </failure>
+          <test-suite type="TestFixture" id="0-1003" name="VixDiskLibTests" fullname="DiskVolumesExplorer.Core.UnitTests.VixDiskLibTests" classname="DiskVolumesExplorer.Core.UnitTests.VixDiskLibTests" runstate="Runnable" testcasecount="1" result="Failed" site="Child" start-time="2016-08-15 00:53:14Z" end-time="2016-08-15 00:53:14Z" duration="0.038311" total="1" passed="0" failed="1" inconclusive="0" skipped="0" asserts="0">
+            <failure>
+              <message><![CDATA[One or more child tests had errors]]></message>
+            </failure>
+            <test-case id="0-1004" name="TestCreateDiskVolumesManager" fullname="DiskVolumesExplorer.Core.UnitTests.VixDiskLibTests.TestCreateDiskVolumesManager" methodname="TestCreateDiskVolumesManager" classname="DiskVolumesExplorer.Core.UnitTests.VixDiskLibTests" runstate="Runnable" seed="1704984489" result="Failed" label="Error" start-time="2016-08-15 00:53:14Z" end-time="2016-08-15 00:53:14Z" duration="0.028596" asserts="0">
+              <failure>
+                <message><![CDATA[System.IO.FileNotFoundException : Could not load file or assembly 'DiskVolumesExplorer.Core.Native.dll' or one of its dependencies. The specified module could not be found.]]></message>
+                <stack-trace><![CDATA[   at DiskVolumesExplorer.Core.UnitTests.VixDiskLibTests.TestCreateDiskVolumesManager()]]></stack-trace>
+              </failure>
+            </test-case>
+          </test-suite>
+          <test-suite type="TestFixture" id="0-1000" name="VmWareApiTests" fullname="DiskVolumesExplorer.Core.UnitTests.VmWareApiTests" classname="DiskVolumesExplorer.Core.UnitTests.VmWareApiTests" runstate="Runnable" testcasecount="2" result="Passed" start-time="2016-08-15 00:53:14Z" end-time="2016-08-15 00:53:17Z" duration="3.468715" total="2" passed="2" failed="0" inconclusive="0" skipped="0" asserts="1">
+            <test-case id="0-1002" name="ConnectToHypervisor" fullname="DiskVolumesExplorer.Core.UnitTests.VmWareApiTests.ConnectToHypervisor" methodname="ConnectToHypervisor" classname="DiskVolumesExplorer.Core.UnitTests.VmWareApiTests" runstate="Runnable" seed="316116525" result="Passed" start-time="2016-08-15 00:53:14Z" end-time="2016-08-15 00:53:16Z" duration="2.473004" asserts="0" />
+            <test-case id="0-1001" name="GetVirtualMachinesTest" fullname="DiskVolumesExplorer.Core.UnitTests.VmWareApiTests.GetVirtualMachinesTest" methodname="GetVirtualMachinesTest" classname="DiskVolumesExplorer.Core.UnitTests.VmWareApiTests" runstate="Runnable" seed="1691250068" result="Passed" start-time="2016-08-15 00:53:16Z" end-time="2016-08-15 00:53:17Z" duration="0.989959" asserts="1" />
+          </test-suite>
+        </test-suite>
+      </test-suite>
+    </test-suite>
+  </test-suite>
+</test-run>

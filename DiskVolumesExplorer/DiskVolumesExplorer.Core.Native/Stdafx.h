@@ -20,5 +20,6 @@
 #include <stdexcept>
 
 #include "vixDiskLib.h"
+#include "vixMntapi.h"
 #include "VixDiskLibUtils.h"
 #include "VixDiskLibErrWrapper.h"

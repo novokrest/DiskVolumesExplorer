@@ -2,6 +2,7 @@
 tmpDirectory="C:\Temp"
 # log level 0 to 6 for quiet ranging to verbose
 vixDiskLib.transport.LogLevel=2
+vixDiskLib.linuxSSL.verifyCertificates=0
 # disable caching to disk
 vixDiskLib.disklib.EnableCache=0
 # network file copy options

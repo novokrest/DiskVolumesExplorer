@@ -24,13 +24,16 @@
     <ClInclude Include="DiskVolumesManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="VixLibraryInitializer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="VixDiskLibErrWrapper.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="VixDiskLibUtils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VixDiskLibInitializer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VixMntApiInitializer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -41,13 +44,19 @@
     <ClCompile Include="Stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="VixLibraryInitializer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="VmWareUtils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="VixDiskLibErrWrapper.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VixDiskLibInitializer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DiskVolumesManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VixMntApiInitializer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
