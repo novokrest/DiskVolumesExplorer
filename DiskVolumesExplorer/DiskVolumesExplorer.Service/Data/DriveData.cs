@@ -3,7 +3,7 @@
 namespace DiskVolumesExplorer.Service.Data
 {
     [DataContract]
-    internal class DriveData
+    internal class DiskData
     {
         [DataMember]
         public string Title { get; set; }

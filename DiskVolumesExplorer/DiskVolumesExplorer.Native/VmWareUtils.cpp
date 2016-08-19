@@ -3,8 +3,6 @@
 
 namespace DiskVolumesExplorer
 {
-namespace Core
-{
 namespace Native
 {
 	/*
@@ -75,6 +73,5 @@ namespace Native
 		vprintf(fmt, args);
 		exit(10);
 	}
-}
 }
 }

@@ -20,8 +20,6 @@
 
 namespace DiskVolumesExplorer
 {
-namespace Core
-{
 namespace Native
 {
 	class VmWareUtils
@@ -31,6 +29,5 @@ namespace Native
 		static void WarnFunc(const char *fmt, va_list args);
 		static void PanicFunc(const char *fmt, va_list args);
 	};
-}
 }
 }

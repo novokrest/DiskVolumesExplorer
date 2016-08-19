@@ -2,8 +2,6 @@
 
 namespace DiskVolumesExplorer
 {
-namespace Core
-{
 namespace Native
 {
 	class VixMntApiInitializer
@@ -12,6 +10,5 @@ namespace Native
 		VixMntApiInitializer();
 		~VixMntApiInitializer();
 	};
-}
 }
 }

@@ -3,8 +3,6 @@
 
 namespace DiskVolumesExplorer
 {
-namespace Core
-{
 namespace Native
 {
 	DiskVolumesManager::~DiskVolumesManager()
@@ -77,6 +75,5 @@ namespace Native
 		vixError = VixDiskLib_Close(diskHandle);
 		CHECK_AND_THROW(vixError);
 	}
-}
 }
 }

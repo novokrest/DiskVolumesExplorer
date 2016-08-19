@@ -71,10 +71,6 @@
       <Project>{8F4BE51F-F107-4A60-80AC-5BB41CC21A47}</Project>
       <Name>DiskVolumesExplorer.Client</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DiskVolumesExplorer.Core.Native\DiskVolumesExplorer.Core.Native.vcxproj">
-      <Project>{f73aacf0-0dc2-45c6-9c3d-a60929f81888}</Project>
-      <Name>DiskVolumesExplorer.Core.Native</Name>
-    </ProjectReference>
     <ProjectReference Include="..\DiskVolumesExplorer.Core\DiskVolumesExplorer.Core.csproj">
       <Project>{EF2DDFF8-7028-4861-B7AF-9F16D71927EA}</Project>
       <Name>DiskVolumesExplorer.Core</Name>

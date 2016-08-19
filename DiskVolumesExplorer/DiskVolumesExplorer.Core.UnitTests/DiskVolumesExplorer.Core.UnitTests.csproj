@@ -60,10 +60,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DiskVolumesExplorer.Core.Native\DiskVolumesExplorer.Core.Native.vcxproj">
-      <Project>{f73aacf0-0dc2-45c6-9c3d-a60929f81888}</Project>
-      <Name>DiskVolumesExplorer.Core.Native</Name>
-    </ProjectReference>
     <ProjectReference Include="..\DiskVolumesExplorer.Core\DiskVolumesExplorer.Core.csproj">
       <Project>{EF2DDFF8-7028-4861-B7AF-9F16D71927EA}</Project>
       <Name>DiskVolumesExplorer.Core</Name>

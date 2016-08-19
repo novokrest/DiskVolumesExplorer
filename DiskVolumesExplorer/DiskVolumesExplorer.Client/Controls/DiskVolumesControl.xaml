@@ -48,7 +48,7 @@
             <DataGridTemplateColumn Width="*">
                 <DataGridTemplateColumn.CellTemplate>
                     <DataTemplate>
-                        <ListBox x:Name="Volumes" ItemsSource="{Binding Volumes}">
+                        <ListBox x:Name="Volumes" ItemsSource="{Binding Volumes}" SelectedValue="{Binding SelectedVolume}">
                             <ListBox.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <VirtualizingStackPanel Orientation="Horizontal" VirtualizationMode="Recycling"/>

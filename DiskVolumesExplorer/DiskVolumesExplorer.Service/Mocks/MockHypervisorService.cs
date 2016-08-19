@@ -16,11 +16,11 @@ namespace DiskVolumesExplorer.Service.Mocks
             };
         }
 
-        public DriveData[] GetDrives(string virtualMachineName)
+        public DiskData[] GetDisks(string virtualMachineName)
         {
             return new[] 
             {
-                new DriveData
+                new DiskData
                 {
                     Title = "Drive #1", Type = "Basic", SizeInBytes = 1024*1024*1024, Status = "Online",
                     Volumes = new VolumeData[] 
@@ -29,7 +29,7 @@ namespace DiskVolumesExplorer.Service.Mocks
                         new VolumeData { Title = "Volume#2", CapacityInBytes = 1024*1024, FreeSpaceInBytes = 1024, FileSystem = "NTFS", Status = "Healthy" }
                     }
                 },
-                new DriveData
+                new DiskData
                 {
                     Title = "Drive #2", Type = "Extended", SizeInBytes = ((ulong)3)*1024*1024*1024, Status = "Offline",
                     Volumes = new VolumeData[]
@@ -38,7 +38,7 @@ namespace DiskVolumesExplorer.Service.Mocks
                         new VolumeData { Title = "Volume#2", CapacityInBytes = 1024*1024, FreeSpaceInBytes = 1024, FileSystem = "NTFS", Status = "Healthy" }
                     }
                 },
-                new DriveData
+                new DiskData
                 {
                     Title = "Drive #3", Type = "Optimal", SizeInBytes = 500*1024*1024, Status = "Online",
                     Volumes = new VolumeData[]

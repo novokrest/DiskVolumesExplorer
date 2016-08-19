@@ -5,8 +5,6 @@
 
 namespace DiskVolumesExplorer
 {
-namespace Core
-{
 namespace Native
 {
 	class DiskVolumesManager
@@ -14,6 +12,7 @@ namespace Native
 	public:
 		DiskVolumesManager();
 		~DiskVolumesManager();
+
 		void Connect();
 
 	private:
@@ -23,6 +22,5 @@ namespace Native
 		VixDiskLibConnection connection_;
 		bool connected_;
 	};
-}
 }
 }

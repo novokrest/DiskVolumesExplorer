@@ -3,8 +3,6 @@
 
 namespace DiskVolumesExplorer
 {
-namespace Core
-{
 namespace Native
 {
 	VixDiskLibInitializer::VixDiskLibInitializer()
@@ -21,6 +19,5 @@ namespace Native
 	{
 		VixDiskLib_Exit();
 	}
-}
 }
 }

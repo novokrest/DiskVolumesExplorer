@@ -3,8 +3,6 @@
 
 namespace DiskVolumesExplorer
 {
-namespace Core
-{
 namespace Native
 {
 	VixMntApiInitializer::VixMntApiInitializer()
@@ -21,6 +19,5 @@ namespace Native
 	{
 		VixMntapi_Exit();
 	}
-}
 }
 }

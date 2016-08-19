@@ -27,6 +27,7 @@ namespace DiskVolumesExplorer.Client
         private IReadOnlyList<string> _virtualMachineNames = Array.AsReadOnly(new string[] {});
         private int _selectedVirtualMachineIndex;
         private IReadOnlyCollection<DriveViewModel> _drives;
+        private VolumeViewModel _selectedVolume;
 
         public MainWindowViewModel(IWindowCloseService closeDialogService, 
                                    IConnectionDialogService connectionDialogService, 
@@ -86,6 +87,19 @@ namespace DiskVolumesExplorer.Client
                 if (_drives != value)
                 {
                     _drives = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        public VolumeViewModel SelectedVolume
+        {
+            get { return _selectedVolume; }
+            set
+            {
+                if (_selectedVolume != value)
+                {
+                    _selectedVolume = value;
                     OnPropertyChanged();
                 }
             }

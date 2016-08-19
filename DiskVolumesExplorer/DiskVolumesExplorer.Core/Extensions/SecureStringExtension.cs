@@ -4,7 +4,7 @@ using System.Security;
 
 namespace DiskVolumesExplorer.Core.Extensions
 {
-    internal static class SecureStringExtension
+    public static class SecureStringExtension
     {
         public static string ConvertToString(this SecureString secureString)
         {

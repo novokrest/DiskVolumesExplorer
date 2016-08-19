@@ -13,11 +13,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiskVolumesExplorer.Service
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DriveVolumesExplorer.Client.UnitTests", "DriveVolumesExplorer.Client.UnitTests\DriveVolumesExplorer.Client.UnitTests.csproj", "{5F6CC485-BB2C-454B-A185-8B97DF0F9D75}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DiskVolumesExplorer.Core.Native", "DiskVolumesExplorer.Core.Native\DiskVolumesExplorer.Core.Native.vcxproj", "{F73AACF0-0DC2-45C6-9C3D-A60929F81888}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DiskVolumesExplorer.Native", "DiskVolumesExplorer.Native\DiskVolumesExplorer.Native.vcxproj", "{E21FF9A7-1242-402C-89EA-049A66292F25}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DiskVolumesExplorer.Native.Tester", "DiskVolumesExplorer.Native.Tester\DiskVolumesExplorer.Native.Tester.vcxproj", "{1853F438-B5D2-4BBB-8F8E-A1B117FA7AFB}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DiskVolumesExplorer.Native.CLR", "DiskVolumesExplorer.Native.CLR\DiskVolumesExplorer.Native.CLR.vcxproj", "{F2479956-CA8B-40FE-8967-134EFFA4BF41}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,14 +57,6 @@ Global
 		{5F6CC485-BB2C-454B-A185-8B97DF0F9D75}.Release|x64.ActiveCfg = Release|x64
 		{5F6CC485-BB2C-454B-A185-8B97DF0F9D75}.Release|x64.Build.0 = Release|x64
 		{5F6CC485-BB2C-454B-A185-8B97DF0F9D75}.Release|x86.ActiveCfg = Release|x64
-		{F73AACF0-0DC2-45C6-9C3D-A60929F81888}.Debug|x64.ActiveCfg = Debug|x64
-		{F73AACF0-0DC2-45C6-9C3D-A60929F81888}.Debug|x64.Build.0 = Debug|x64
-		{F73AACF0-0DC2-45C6-9C3D-A60929F81888}.Debug|x86.ActiveCfg = Debug|Win32
-		{F73AACF0-0DC2-45C6-9C3D-A60929F81888}.Debug|x86.Build.0 = Debug|Win32
-		{F73AACF0-0DC2-45C6-9C3D-A60929F81888}.Release|x64.ActiveCfg = Release|x64
-		{F73AACF0-0DC2-45C6-9C3D-A60929F81888}.Release|x64.Build.0 = Release|x64
-		{F73AACF0-0DC2-45C6-9C3D-A60929F81888}.Release|x86.ActiveCfg = Release|Win32
-		{F73AACF0-0DC2-45C6-9C3D-A60929F81888}.Release|x86.Build.0 = Release|Win32
 		{E21FF9A7-1242-402C-89EA-049A66292F25}.Debug|x64.ActiveCfg = Debug|x64
 		{E21FF9A7-1242-402C-89EA-049A66292F25}.Debug|x64.Build.0 = Debug|x64
 		{E21FF9A7-1242-402C-89EA-049A66292F25}.Debug|x86.ActiveCfg = Debug|Win32
@@ -81,6 +73,14 @@ Global
 		{1853F438-B5D2-4BBB-8F8E-A1B117FA7AFB}.Release|x64.Build.0 = Release|x64
 		{1853F438-B5D2-4BBB-8F8E-A1B117FA7AFB}.Release|x86.ActiveCfg = Release|Win32
 		{1853F438-B5D2-4BBB-8F8E-A1B117FA7AFB}.Release|x86.Build.0 = Release|Win32
+		{F2479956-CA8B-40FE-8967-134EFFA4BF41}.Debug|x64.ActiveCfg = Debug|x64
+		{F2479956-CA8B-40FE-8967-134EFFA4BF41}.Debug|x64.Build.0 = Debug|x64
+		{F2479956-CA8B-40FE-8967-134EFFA4BF41}.Debug|x86.ActiveCfg = Debug|Win32
+		{F2479956-CA8B-40FE-8967-134EFFA4BF41}.Debug|x86.Build.0 = Debug|Win32
+		{F2479956-CA8B-40FE-8967-134EFFA4BF41}.Release|x64.ActiveCfg = Release|x64
+		{F2479956-CA8B-40FE-8967-134EFFA4BF41}.Release|x64.Build.0 = Release|x64
+		{F2479956-CA8B-40FE-8967-134EFFA4BF41}.Release|x86.ActiveCfg = Release|Win32
+		{F2479956-CA8B-40FE-8967-134EFFA4BF41}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

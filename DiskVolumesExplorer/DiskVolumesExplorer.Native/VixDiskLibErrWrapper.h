@@ -2,8 +2,6 @@
 
 namespace DiskVolumesExplorer
 {
-namespace Core
-{
 namespace Native
 {
 	class VixDiskLibErrWrapper
@@ -23,6 +21,5 @@ namespace Native
 		std::string _file;
 		int _line;
 	};
-}
 }
 }

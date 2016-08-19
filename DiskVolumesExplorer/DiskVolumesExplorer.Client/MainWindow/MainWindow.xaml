@@ -58,7 +58,7 @@
                     Margin="10,0,5,0 "/>
             <ComboBox ItemsSource="{Binding VirtualMachineNames}"
                       SelectedIndex="{Binding SelectedVirtualMachineIndex, Mode=OneWayToSource}"
-                      IsEnabled="{Binding Source=VirtualMachineNames, Path=Count, Converter={StaticResource CountToBooleanConverter}}"/>
+                      IsEnabled="{Binding VirtualMachineNames.Count, Converter={StaticResource CountToBooleanConverter}}"/>
             
         </DockPanel>
  

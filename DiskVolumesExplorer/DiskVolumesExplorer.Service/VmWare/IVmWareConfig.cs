@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DiskVolumesExplorer.Service.VmWare
+﻿namespace DiskVolumesExplorer.Service.VmWare
 {
     internal interface IVmWareConfig
     {

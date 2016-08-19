@@ -101,21 +101,23 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_WINDOWS;_USRDLL;DISKVOLUMESEXPLORERNATIVE_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)VmWare\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)VmWare\VDDK\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(SolutionDir)\VmWare\VDDK\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>vixDiskLib.lib;vixMntapi.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Lib>
-      <AdditionalLibraryDirectories>$(SolutionDir)VmWare\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>vixDiskLib.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)VmWare\VDDK\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>vixDiskLib.lib;vixMntapi.lib</AdditionalDependencies>
     </Lib>
     <PostBuildEvent>
       <Command>xcopy /y VmWareConfig.txt $(SolutionDir)$(Platform)\$(Configuration)\</Command>
     </PostBuildEvent>
     <ProjectReference>
-      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
     </ProjectReference>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

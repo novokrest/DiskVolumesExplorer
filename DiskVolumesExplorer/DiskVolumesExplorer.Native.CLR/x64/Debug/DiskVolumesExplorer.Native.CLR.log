@@ -1,0 +1,3 @@
+﻿DiskVolumesExplorer.Native.lib(DiskVolumesManager.obj) : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/OPT:LBR' specification
+  DiskVolumesExplorer.Native.CLR.vcxproj -> E:\Github\DiskVolumesExplorer\DiskVolumesExplorer\x64\Debug\DiskVolumesExplorer.Native.CLR.dll
+  DiskVolumesExplorer.Native.CLR.vcxproj -> E:\Github\DiskVolumesExplorer\DiskVolumesExplorer\x64\Debug\DiskVolumesExplorer.Native.CLR.pdb (Full PDB)
