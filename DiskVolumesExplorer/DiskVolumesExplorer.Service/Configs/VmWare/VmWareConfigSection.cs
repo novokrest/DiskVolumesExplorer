@@ -1,4 +1,4 @@
-﻿using DiskVolumesExplorer.Core.Configs;
+﻿using DiskVolumesExplorer.Service.Core.Configs;
 using System.Configuration;
 
 namespace DiskVolumesExplorer.Service.Configs.VmWare

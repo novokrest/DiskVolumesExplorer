@@ -166,6 +166,9 @@
     <ProjectReference Include="..\DiskVolumesExplorer.Native\DiskVolumesExplorer.Native.vcxproj">
       <Project>{e21ff9a7-1242-402c-89ea-049a66292f25}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\DiskVolumesExplorer.Service.Core\DiskVolumesExplorer.Service.Core.csproj">
+      <Project>{96936386-005e-4019-b285-9012cf6d19ba}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

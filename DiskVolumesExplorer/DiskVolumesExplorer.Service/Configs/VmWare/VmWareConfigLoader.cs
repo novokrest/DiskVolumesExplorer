@@ -1,15 +1,16 @@
-﻿using System.Configuration;
+﻿using DiskVolumesExplorer.Service.Core.Configs;
+using System.Configuration;
 
 namespace DiskVolumesExplorer.Service.Configs.VmWare
 {
     internal interface IVmWareConfigLoader
     {
-        IVmWareConfig LoadVmWareConfig();
+        IVmWareConnectionConfig LoadVmWareConfig();
     }
 
     internal class VmWareConfigLoader : IVmWareConfigLoader
     {
-        public IVmWareConfig LoadVmWareConfig()
+        public IVmWareConnectionConfig LoadVmWareConfig()
         {
             return (VmWareConfigSection)ConfigurationManager.GetSection(VmWareConfigSection.SectionName);
         }

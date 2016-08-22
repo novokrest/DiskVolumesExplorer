@@ -1,4 +1,4 @@
-﻿using DiskVolumesExplorer.Service.Data;
+﻿using DiskVolumesExplorer.Service.Core.Data;
 
 namespace DiskVolumesExplorer.Service.Mocks
 {

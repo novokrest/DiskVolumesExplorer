@@ -1,4 +1,4 @@
-﻿using DiskVolumesExplorer.Service.Data;
+﻿using DiskVolumesExplorer.Service.Core.Data;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 

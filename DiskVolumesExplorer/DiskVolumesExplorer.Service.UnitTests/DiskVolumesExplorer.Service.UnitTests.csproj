@@ -70,6 +70,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DiskVolumesExplorer.Core\DiskVolumesExplorer.Core.csproj">
+      <Project>{EF2DDFF8-7028-4861-B7AF-9F16D71927EA}</Project>
+      <Name>DiskVolumesExplorer.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DiskVolumesExplorer.Service.Core\DiskVolumesExplorer.Service.Core.csproj">
+      <Project>{96936386-005E-4019-B285-9012CF6D19BA}</Project>
+      <Name>DiskVolumesExplorer.Service.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DiskVolumesExplorer.Service\DiskVolumesExplorer.Service.csproj">
       <Project>{8C57D058-BB07-4B2D-8A30-A721071AFE6B}</Project>
       <Name>DiskVolumesExplorer.Service</Name>

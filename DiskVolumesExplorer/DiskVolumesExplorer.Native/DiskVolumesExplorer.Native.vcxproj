@@ -161,6 +161,7 @@
     </Text>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DiskData.h" />
     <ClInclude Include="DiskVolumesManager.h" />
     <ClInclude Include="SafeVixDiskLibConnection.h" />
     <ClInclude Include="SafeVixDiskLibHandle.h" />
@@ -177,8 +178,10 @@
     <ClInclude Include="VixVolumeMounter.h" />
     <ClInclude Include="VmWareConnectionConfig.h" />
     <ClInclude Include="VmWareDiskConfig.h" />
+    <ClInclude Include="VolumeData.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="DiskData.cpp" />
     <ClCompile Include="DiskVolumesManager.cpp" />
     <ClCompile Include="SafeVixDiskLibConnection.cpp" />
     <ClCompile Include="SafeVixDiskLibHandle.cpp" />
@@ -199,6 +202,7 @@
     <ClCompile Include="VmWareConnectionConfig.cpp" />
     <ClCompile Include="VmWareDiskConfig.cpp" />
     <ClCompile Include="VmWareUtils.cpp" />
+    <ClCompile Include="VolumeData.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

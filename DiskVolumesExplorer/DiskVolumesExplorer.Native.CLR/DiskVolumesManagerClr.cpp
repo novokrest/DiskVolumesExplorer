@@ -4,6 +4,8 @@
 #include "DiskVolumesManagerClr.h"
 #include "Converters.h"
 
+using namespace DiskVolumesExplorer::Service::Core::Data;
+
 namespace DiskVolumesExplorer
 {
 namespace Native
@@ -12,7 +14,7 @@ namespace Wrappers
 {
 	DiskVolumesManager::DiskVolumesManager(IVmWareConnectionConfig ^connectionConfig)
 	{
-		VmWareConnectionConfig nativeConnectionConfig = Converters::ToNative(connectionConfig);
+		VmWareConnectionConfig nativeConnectionConfig = ConfigConverter::ToNative(connectionConfig);
 		nativeManager_ = new DiskVolumesExplorer::Native::DiskVolumesManager(nativeConnectionConfig);
 	}
 
@@ -24,6 +26,15 @@ namespace Wrappers
 	DiskVolumesManager::!DiskVolumesManager()
 	{
 		delete nativeManager_;
+	}
+
+	::DiskData^ DiskVolumesManager::GetDiskData(IVmWareDiskConfig ^diskConfig)
+	{
+		VmWareDiskConfig nativeDiskConfig = ConfigConverter::ToNative(diskConfig);
+		DiskData nativeDiskData = nativeManager_->GetDiskData(nativeDiskConfig);
+
+		::DiskData^ diskData = DataConverter::FromNative(nativeDiskData);
+		return diskData;
 	}
 }
 }

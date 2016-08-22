@@ -4,6 +4,7 @@
 #include "VixMntApiInitializer.h"
 #include "VmWareConnectionConfig.h"
 #include "VmWareDiskConfig.h"
+#include "DiskData.h"
 
 namespace DiskVolumesExplorer
 {
@@ -15,9 +16,7 @@ namespace Native
 		DiskVolumesManager(const VmWareConnectionConfig &connectionConfig);
 		~DiskVolumesManager();
 
-		void Connect();
-
-		void GetVolumes(const VmWareDiskConfig &diskConfig);
+		DiskData GetDiskData(const VmWareDiskConfig &diskConfig);
 
 	private:
 		VixDiskLibInitializer vixDiskLibInitializer_;

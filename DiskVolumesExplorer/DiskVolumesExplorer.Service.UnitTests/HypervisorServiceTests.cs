@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using Rhino.Mocks;
 using DiskVolumesExplorer.Service.Configs.VmWare;
+using DiskVolumesExplorer.Service.Core.Configs;
 
 namespace DiskVolumesExplorer.Service.UnitTests
 {
@@ -19,8 +20,8 @@ namespace DiskVolumesExplorer.Service.UnitTests
 
         private HypervisorService CreateHypervisorService()
         {
-            var vmWareConfig = MockRepository.GenerateStub<IVmWareConfig>();
-            vmWareConfig.Expect(s => s.Url).Return("http://192.168.36.128/sdk");
+            var vmWareConfig = MockRepository.GenerateStub<IVmWareConnectionConfig>();
+            vmWareConfig.Expect(s => s.Server).Return("http://192.168.36.128/sdk");
             vmWareConfig.Expect(s => s.User).Return("root");
             vmWareConfig.Expect(s => s.Password).Return("1234567");
 

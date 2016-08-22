@@ -70,6 +70,7 @@
     <Compile Include="Configs\Users\UsersCollection.cs" />
     <Compile Include="Configs\Users\UsersConfigSection.cs" />
     <Compile Include="Configs\VmWare\VmWareConfigLoader.cs" />
+    <Compile Include="Configs\VmWare\VmWareDiskConfig.cs" />
     <Compile Include="Data\DiskData.cs" />
     <Compile Include="Data\VolumeData.cs" />
     <Compile Include="Extensions\VmWareConfigExtension.cs" />
@@ -99,6 +100,14 @@
     <ProjectReference Include="..\DiskVolumesExplorer.Core\DiskVolumesExplorer.Core.csproj">
       <Project>{EF2DDFF8-7028-4861-B7AF-9F16D71927EA}</Project>
       <Name>DiskVolumesExplorer.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DiskVolumesExplorer.Native.CLR\DiskVolumesExplorer.Native.CLR.vcxproj">
+      <Project>{f2479956-ca8b-40fe-8967-134effa4bf41}</Project>
+      <Name>DiskVolumesExplorer.Native.CLR</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DiskVolumesExplorer.Service.Core\DiskVolumesExplorer.Service.Core.csproj">
+      <Project>{96936386-005e-4019-b285-9012cf6d19ba}</Project>
+      <Name>DiskVolumesExplorer.Service.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

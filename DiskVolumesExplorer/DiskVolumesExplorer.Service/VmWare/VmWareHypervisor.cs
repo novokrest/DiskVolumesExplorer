@@ -1,20 +1,22 @@
 ﻿using System.Collections.Generic;
-using DiskVolumesExplorer.Core.Configs;
 using DiskVolumesExplorer.Core.Extensions;
 using Vim25Api;
 using System;
-using DiskVolumesExplorer.Service.Data;
 using DiskVolumesExplorer.Core;
+using DiskVolumesExplorer.Native.Wrappers;
+using DiskVolumesExplorer.Service.Core.Data;
+using DiskVolumesExplorer.Service.Core.Configs;
+using DiskVolumesExplorer.Service.Configs.VmWare;
 
 namespace DiskVolumesExplorer.Service.VmWare
 {
     internal sealed class VmWareHypervisor : IDisposable
     {
         private readonly VmWareServiceConnection _connection = new VmWareServiceConnection();
-        private readonly ISecureConnectionConfig _connectionConfig;
+        private readonly IVmWareConnectionConfig _connectionConfig;
         private bool _connected;
 
-        public VmWareHypervisor(ISecureConnectionConfig connectionConfig)
+        public VmWareHypervisor(IVmWareConnectionConfig connectionConfig)
         {
             _connectionConfig = connectionConfig;
         }
@@ -96,8 +98,21 @@ namespace DiskVolumesExplorer.Service.VmWare
 
             var virtualDiskPaths = serviceUtil.GetVirtualDiskPaths(virtualMachineRef);
 
-
             return new DiskData[0];
+        }
+
+        private DiskData LoadDiskData(string dataCenterName, string virtualDiskPath)
+        {
+            var diskConfig = new VmWareDiskConfig
+            {
+                Datacenter = dataCenterName,
+                VirtualDiskFilePath = virtualDiskPath
+            };
+
+            using (var diskVolumesManager = new DiskVolumesManager(_connectionConfig))
+            {
+                return diskVolumesManager.GetDiskData(diskConfig);
+            }
         }
 
         private void EnsureConnected()
@@ -110,7 +125,7 @@ namespace DiskVolumesExplorer.Service.VmWare
 
         private void Connect()
         {
-            _connection.Connect(_connectionConfig.ServerAddress, _connectionConfig.User, _connectionConfig.Password.ConvertToString());
+            _connection.Connect(_connectionConfig.Server, _connectionConfig.User, _connectionConfig.Password);
             _connected = true;
         }
 

@@ -1,6 +1,6 @@
 ﻿using DiskVolumesExplorer.Core.Configs;
 using DiskVolumesExplorer.Core.Extensions;
-using DiskVolumesExplorer.Service.Configs.VmWare;
+using DiskVolumesExplorer.Service.Core.Configs;
 
 namespace DiskVolumesExplorer.Service.Extensions
 {
@@ -10,7 +10,7 @@ namespace DiskVolumesExplorer.Service.Extensions
         {
             return new SecureConnectionConfig
             {
-                ServerAddress = vmWareConfig.Url,
+                ServerAddress = vmWareConfig.Server,
                 User = vmWareConfig.User,
                 Password = vmWareConfig.Password.ConvertToSecureString()
             };

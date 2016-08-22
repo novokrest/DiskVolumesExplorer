@@ -67,6 +67,12 @@
     <ClInclude Include="SafeVixOsInfo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="DiskData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VolumeData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -112,6 +118,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="SafeVixOsInfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DiskData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VolumeData.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
