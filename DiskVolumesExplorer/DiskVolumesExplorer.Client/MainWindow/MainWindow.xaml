@@ -8,7 +8,7 @@
         xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:components="clr-namespace:DiskVolumesExplorer.Client.Components"
         mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=local:MainWindowViewModel, IsDesignTimeCreatable=False}"
-        Title="MainWindow" ResizeMode="NoResize" Width="750" Height="500">
+        Title="MainWindow" ResizeMode="NoResize" Width="750" Height="600">
 
     <Window.Resources>
         <ResourceDictionary>
@@ -18,7 +18,9 @@
                     <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
                     <components:IconTypeToImageConverter x:Key="IconTypeToImageConverter"/>
                     <components:CountToBooleanConverter x:Key="CountToBooleanConverter"/>
-                    <components:DrivesToVolumesConverter x:Key="DrivesToVolumesConverter"/>
+                    <components:DisksToVolumesConverter x:Key="DisksToVolumesConverter"/>
+                    <components:CountToVisibilityConverter x:Key="CountToVisibilityConverter"/>
+                    <components:ReverseCountToVisibilityConverter x:Key="ReverseCountToVisibilityConverter"/>
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
@@ -37,7 +39,7 @@
         <components:CancelCloseWindowBehavior CancelClose="{Binding CancelClose}" />
     </i:Interaction.Behaviors>
 
-    <Grid x:Name="MainGrid">
+    <Grid x:Name="MainGrid" Margin="5">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="5"/>
@@ -61,45 +63,150 @@
                       IsEnabled="{Binding VirtualMachineNames.Count, Converter={StaticResource CountToBooleanConverter}}"/>
             
         </DockPanel>
- 
-        <DataGrid Grid.Row="2" Grid.Column="0" 
-                  ItemsSource="{Binding Drives, Converter={StaticResource DrivesToVolumesConverter}}"
+
+        <DataGrid x:Name="VolumesDataGrid" 
+                  Grid.Row="2" Grid.Column="0" 
+                  DataContext="{Binding Disks, Converter={StaticResource DisksToVolumesConverter}}"
+                  ItemsSource="{Binding}"
+                  SelectionUnit="FullRow"
+                  SelectedItem="{Binding SelectedVolume, Mode=TwoWay}"
                   AutoGenerateColumns="False"
-                  ColumnWidth="*">
-                <DataGrid.Columns>
-                    <DataGridTemplateColumn SortMemberPath="Name" Width="Auto">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
+                  ColumnWidth="*"
+                  Height="250"
+                  RowHeaderWidth="0"
+                  Visibility="{Binding Count, Converter={StaticResource CountToVisibilityConverter}, FallbackValue=Hidden}">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn SortMemberPath="Name" Width="Auto" Header="Volume">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="{Binding Icon, Converter={StaticResource IconTypeToImageConverter}}"/>
+                                <TextBlock Text="{Binding Title}" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="File System" Binding="{Binding FileSystem}"/>
+                <DataGridTextColumn Header="Capacity" Binding="{Binding CapacityInBytes}"/>
+                <DataGridTextColumn Header="Free" Binding="{Binding FreeSpaceInBytes}"/>
+                <DataGridTextColumn Header="Status" Binding="{Binding Count, Source=Disks}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Grid Grid.Row="2" 
+              Visibility="{Binding Disks.Count, Converter={StaticResource ReverseCountToVisibilityConverter}}"
+              Height="{Binding ElementName=VolumesDataGrid, Path=Height}"
+              Width="{Binding ElementName=VolumesDataGrid, Path=Width}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <TextBlock x:Name="EmptyVolumesDataGridPlaceholder"
+                   Grid.Row="1"     
+                   Text="No volumes information available"
+                   TextAlignment="Center"/>
+        </Grid>
+
+        <DataGrid x:Name="DisksDataGrid" Grid.Row="4"
+                  Height="250"
+                  ItemsSource="{Binding Disks}"
+                  AutoGenerateColumns="False"
+                  HeadersVisibility="None"
+                  ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                  ScrollViewer.VerticalScrollBarVisibility="Auto"
+                  ScrollViewer.CanContentScroll="True"
+                  Visibility="{Binding Disks.Count, Converter={StaticResource CountToVisibilityConverter}}">
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Width="Auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel x:Name="DriveHeader">
                                 <StackPanel Orientation="Horizontal">
-                                    <Image Source="{Binding Icon, Converter={StaticResource IconTypeToImageConverter}}"/>
-                                    <TextBlock Text="{Binding Title}" VerticalAlignment="Center"/>
+                                    <Image Source="{Binding Icon, Converter={StaticResource IconTypeToImageConverter}}" Margin="5,5"/>
+                                    <TextBlock Text="{Binding Title}"/>
                                 </StackPanel>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                    <DataGridTextColumn Binding="{Binding FileSystem}"/>
-                    <DataGridTextColumn Binding="{Binding CapacityInBytes}"/>
-                    <DataGridTextColumn Binding="{Binding FreeSpaceInBytes}"/>
-                    <DataGridTextColumn Binding="{Binding Status}"/>
-                </DataGrid.Columns>
-            </DataGrid>
+                                <TextBlock Text="{Binding Type}"/>
+                                <TextBlock Text="{Binding SizeInBytes}"/>
+                                <TextBlock Text="{Binding Status}"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ListBox x:Name="Volumes" DataContext="{Binding Volumes}" ItemsSource="{Binding}" 
+                                     SelectedValue="{Binding SelectedVolume, Mode=TwoWay}">
+                                <ListBox.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <VirtualizingStackPanel Orientation="Horizontal" VirtualizationMode="Recycling"/>
+                                    </ItemsPanelTemplate>
+                                </ListBox.ItemsPanel>
+                                <ListBox.ItemContainerStyle>
+                                    <Style TargetType="ListBoxItem">
+                                        <Setter Property="BorderThickness" Value="1"/>
+                                        <Setter Property="BorderBrush" Value="Black"/>
+                                        <Setter Property="Margin" Value="2,0"/>
+                                        <Style.Triggers>
+                                            <Trigger Property="IsSelected" Value="True">
+                                                <Setter Property="Background" Value="Red">
+                                                    <!--<Setter.Value>
+                                                        <DrawingBrush x:Name="horizont" Viewport="0,0,0.015,0.015" TileMode="Tile">
+                                                            <DrawingBrush.RelativeTransform>
+                                                                <RotateTransform CenterX="0.5" CenterY="0.5" Angle="45" />
+                                                            </DrawingBrush.RelativeTransform>
+                                                            <DrawingBrush.Drawing>
+                                                                <DrawingGroup>
+                                                                    <GeometryDrawing Geometry="M0,0 L1,0 L1,1 L0,1 z" Brush="Black" />
+                                                                    <GeometryDrawing Geometry="M0,1 L1,1 L1,2 L0,2 z" Brush="Transparent" />
+                                                                </DrawingGroup>
+                                                            </DrawingBrush.Drawing>
+                                                        </DrawingBrush>
+                                                    </Setter.Value>-->
+                                                </Setter>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </ListBox.ItemContainerStyle>
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel>
+                                            <TextBlock Text="{Binding Title}"/>
+                                            <TextBlock Text="{Binding CapacityInBytes}"/>
+                                            <TextBlock Text="{Binding FileSystem}"/>
+                                            <TextBlock Text="{Binding Status}"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
 
-        <controls:DiskVolumesControl Grid.Row="4" />
-
-        <!--<ListBox x:Name="Disks" Grid.Row="4" ScrollViewer.CanContentScroll="False">
-            <ListBox.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <VirtualizingStackPanel Orientation="Horizontal" VirtualizationMode="Recycling"/>
-                </ItemsPanelTemplate>
-            </ListBox.ItemsPanel>
-        </ListBox>-->
+        <Grid Grid.Row="4"
+              Height="{Binding ElementName=DisksDataGrid}"
+              Width="{Binding ElementName=DisksDataGrid}"
+              Visibility="{Binding Disks.Count, Converter={StaticResource ReverseCountToVisibilityConverter}}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <TextBlock x:Name="EmptyDisksDataGridPlaceholder"
+                       Grid.Row="1"
+                       Text="No disks information available"
+                       TextAlignment="Center"/>
+        </Grid>
 
         <Grid Grid.Row="0" Grid.Column="0"
               Grid.RowSpan="{Binding ElementName=MainGrid, Path=RowDefinitions.Count}"
               Grid.ColumnSpan="{Binding ElementName=MainGrid, Path=ColumnDefinitions.Count}"
               Visibility="{Binding IsProcessing, Converter={StaticResource BooleanToVisibilityConverter}}">
 
-            <Grid Background="Gray" Opacity="0.5"></Grid>
+            <Grid Background="Gray" Opacity="0.5"/>
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>

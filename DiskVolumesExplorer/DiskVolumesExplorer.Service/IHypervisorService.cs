@@ -12,7 +12,7 @@ namespace DiskVolumesExplorer.Service
         string[] GetVirtualMachines();
 
         [OperationContract]
-        [WebGet(UriTemplate = "drives/{virtualMachineName}", ResponseFormat = WebMessageFormat.Json)]
+        [WebGet(UriTemplate = "disks/{virtualMachineName}", ResponseFormat = WebMessageFormat.Json)]
         DiskData[] GetDisks(string virtualMachineName);
     }
 }

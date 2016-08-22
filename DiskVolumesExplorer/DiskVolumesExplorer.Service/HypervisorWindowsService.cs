@@ -1,16 +1,16 @@
-﻿using DiskVolumesExplorer.Service.Mocks;
+﻿using DiskVolumesExplorer.Service.Configs.VmWare;
 using System.ServiceModel;
 using System.ServiceProcess;
 
 namespace DiskVolumesExplorer.Service
 {
-    internal class HypervisorServiceWindowsHost : ServiceBase
+    internal class HypervisorWindowsService : ServiceBase
     {
         public const string HypervisorServiceName = "HypervisorService";
 
         public ServiceHost serviceHost = null;
 
-        public HypervisorServiceWindowsHost()
+        public HypervisorWindowsService()
         {
             ServiceName = HypervisorServiceName;
         }
@@ -29,7 +29,10 @@ namespace DiskVolumesExplorer.Service
 
         private void OpenServiceHost()
         {
-            serviceHost = new ServiceHost(typeof(MockHypervisorService));
+            var vmWareConfigLoader = new VmWareConfigLoader();
+            var hypervisorService = new HypervisorService(vmWareConfigLoader);
+            serviceHost = new ServiceHost(hypervisorService);
+            serviceHost.Description.Behaviors.Find<ServiceBehaviorAttribute>().InstanceContextMode = InstanceContextMode.Single;
             serviceHost.Open();
         }
 

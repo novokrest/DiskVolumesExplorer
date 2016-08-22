@@ -19,7 +19,11 @@ namespace DiskVolumesExplorer.Client
             var mainWindow = new MainWindow();
             var mainWindowCloseService = new WindowCloseService(mainWindow);
             var connectionDialogService = new ConnectionDialogService(mainWindow, hypervisorServiceProvider);
-            var mainWindowViewModel = new MainWindowViewModel(mainWindowCloseService, connectionDialogService, virtualMachineNamesLoader, virtualMachineDisksLoader, cleanupService);
+            var errorDialogService = new ErrorDialogService(mainWindow);
+            var mainWindowViewModel = new MainWindowViewModel(mainWindowCloseService, 
+                                                              connectionDialogService, errorDialogService, 
+                                                              virtualMachineNamesLoader, virtualMachineDisksLoader, 
+                                                              cleanupService);
             mainWindow.DataContext = mainWindowViewModel;
 
             return mainWindow;

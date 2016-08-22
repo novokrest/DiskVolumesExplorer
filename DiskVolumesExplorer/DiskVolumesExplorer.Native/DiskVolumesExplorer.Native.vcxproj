@@ -162,15 +162,30 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DiskVolumesManager.h" />
+    <ClInclude Include="SafeVixDiskLibConnection.h" />
+    <ClInclude Include="SafeVixDiskLibHandle.h" />
+    <ClInclude Include="SafeVixDiskSetHandle.h" />
+    <ClInclude Include="SafeVixOsInfo.h" />
+    <ClInclude Include="SafeVixVolumeHandles.h" />
+    <ClInclude Include="SafeVixVolumeInfo.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
     <ClInclude Include="VixDiskLibErrWrapper.h" />
     <ClInclude Include="VixDiskLibInitializer.h" />
     <ClInclude Include="VixDiskLibUtils.h" />
     <ClInclude Include="VixMntApiInitializer.h" />
+    <ClInclude Include="VixVolumeMounter.h" />
+    <ClInclude Include="VmWareConnectionConfig.h" />
+    <ClInclude Include="VmWareDiskConfig.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DiskVolumesManager.cpp" />
+    <ClCompile Include="SafeVixDiskLibConnection.cpp" />
+    <ClCompile Include="SafeVixDiskLibHandle.cpp" />
+    <ClCompile Include="SafeVixDiskSetHandle.cpp" />
+    <ClCompile Include="SafeVixOsInfo.cpp" />
+    <ClCompile Include="SafeVixVolumeHandles.cpp" />
+    <ClCompile Include="SafeVixVolumeInfo.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -180,6 +195,9 @@
     <ClCompile Include="VixDiskLibErrWrapper.cpp" />
     <ClCompile Include="VixDiskLibInitializer.cpp" />
     <ClCompile Include="VixMntApiInitializer.cpp" />
+    <ClCompile Include="VixVolumeMounter.cpp" />
+    <ClCompile Include="VmWareConnectionConfig.cpp" />
+    <ClCompile Include="VmWareDiskConfig.cpp" />
     <ClCompile Include="VmWareUtils.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -2,31 +2,27 @@
 using DiskVolumesExplorer.Core.Configs;
 using DiskVolumesExplorer.Core.Extensions;
 using Vim25Api;
+using System;
+using DiskVolumesExplorer.Service.Data;
+using DiskVolumesExplorer.Core;
 
 namespace DiskVolumesExplorer.Service.VmWare
 {
-    public class VmWareHypervisor
+    internal sealed class VmWareHypervisor : IDisposable
     {
         private readonly VmWareServiceConnection _connection = new VmWareServiceConnection();
         private readonly ISecureConnectionConfig _connectionConfig;
+        private bool _connected;
 
         public VmWareHypervisor(ISecureConnectionConfig connectionConfig)
         {
             _connectionConfig = connectionConfig;
         }
 
-        public void Connect()
-        {
-            _connection.Connect(_connectionConfig.ServerAddress, _connectionConfig.User, _connectionConfig.Password.ConvertToString());
-        }
-
-        public void Disconnect()
-        {
-            _connection.Disconnect();
-        }
-
         public IReadOnlyCollection<string> GetVirtualMachineNames()
         {
+            EnsureConnected();
+
             ServiceContent serviceContent = _connection.ServiceContent;
             ManagedObjectReference viewManager = serviceContent.viewManager;
             ManagedObjectReference propertyCollector = serviceContent.propertyCollector;
@@ -85,6 +81,50 @@ namespace DiskVolumesExplorer.Service.VmWare
             }
 
             return virtualMachineNames;
+        }
+
+        public DiskData[] GetDisks(string virtualMachineName)
+        {
+            EnsureConnected();
+
+            VmWareServiceUtil serviceUtil = new VmWareServiceUtil(_connection);
+            ManagedObjectReference virtualMachineRef = serviceUtil.GetDecendentMoRef(null, "VirtualMachine", virtualMachineName);
+            Verifiers.VerifyNotNull(virtualMachineRef, "Cannot find virtual machine with specified name: {0}", virtualMachineName);
+
+            String dataCenterName = serviceUtil.GetDataCenter(virtualMachineRef);
+            String[] vmDirectory = serviceUtil.GetVmDirectory(virtualMachineRef);
+
+            var virtualDiskPaths = serviceUtil.GetVirtualDiskPaths(virtualMachineRef);
+
+
+            return new DiskData[0];
+        }
+
+        private void EnsureConnected()
+        {
+            if (!_connected)
+            {
+                Connect();
+            }
+        }
+
+        private void Connect()
+        {
+            _connection.Connect(_connectionConfig.ServerAddress, _connectionConfig.User, _connectionConfig.Password.ConvertToString());
+            _connected = true;
+        }
+
+        public void Dispose()
+        {
+            if (_connected)
+            {
+                Disconnect();
+            }
+        }
+
+        private void Disconnect()
+        {
+            _connection.Disconnect();
         }
     }
 }

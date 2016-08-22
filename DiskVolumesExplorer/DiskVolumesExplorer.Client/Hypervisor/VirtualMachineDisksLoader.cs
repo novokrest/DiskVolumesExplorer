@@ -9,7 +9,7 @@ namespace DiskVolumesExplorer.Client.Hypervisor
 {
     internal interface IVirtualMachineDisksLoader
     {
-        Task<IDriveCollection> LoadVirtualMachineDisks(string virtualMachineName);
+        Task<IDiskCollection> LoadVirtualMachineDisks(string virtualMachineName);
     }
 
     internal sealed class VirtualMachineDisksLoader : IVirtualMachineDisksLoader
@@ -21,7 +21,7 @@ namespace DiskVolumesExplorer.Client.Hypervisor
             _hypervisorServiceProvider = hypervisorServiceProvider;
         }
 
-        public Task<IDriveCollection> LoadVirtualMachineDisks(string virtualMachineName)
+        public Task<IDiskCollection> LoadVirtualMachineDisks(string virtualMachineName)
         {
             var hypervisorService = _hypervisorServiceProvider.AsyncHypervisorService;
             return hypervisorService.GetDrivesAsync(virtualMachineName);

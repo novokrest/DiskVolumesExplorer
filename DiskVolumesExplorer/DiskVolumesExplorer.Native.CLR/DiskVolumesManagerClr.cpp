@@ -2,6 +2,7 @@
 
 #include "stdafx.h"
 #include "DiskVolumesManagerClr.h"
+#include "Converters.h"
 
 namespace DiskVolumesExplorer
 {
@@ -9,10 +10,10 @@ namespace Native
 {
 namespace Wrappers
 {
-	DiskVolumesManager::DiskVolumesManager()
-		: nativeManager_(new DiskVolumesExplorer::Native::DiskVolumesManager())
+	DiskVolumesManager::DiskVolumesManager(IVmWareConnectionConfig ^connectionConfig)
 	{
-
+		VmWareConnectionConfig nativeConnectionConfig = Converters::ToNative(connectionConfig);
+		nativeManager_ = new DiskVolumesExplorer::Native::DiskVolumesManager(nativeConnectionConfig);
 	}
 
 	DiskVolumesManager::~DiskVolumesManager()

@@ -3,17 +3,17 @@ using System.Collections.Generic;
 
 namespace DiskVolumesExplorer.Core.Mocks
 {
-    class MockDiskCollection : MockCollection<MockDisk, IDrive>, IDriveCollection
+    class MockDiskCollection : MockCollection<MockDisk, IDisk>, IDiskCollection
     {
         public MockDiskCollection(int disksCount = 5)
             : base(disksCount)
         {
         }
 
-        public IDrive this[int index] => Elements[index];
+        public IDisk this[int index] => Elements[index];
     }
 
-    internal class MockDisk : CountableInstance, IDrive
+    internal class MockDisk : CountableInstance, IDisk
     {
         public MockDisk()
         {

@@ -2,11 +2,11 @@
 
 namespace DiskVolumesExplorer.Client.Services
 {
-    public partial class DriveData : IDrive
+    public partial class DriveData : IDisk
     {
         private IVolumeCollection _volumeCollection;
 
-        IVolumeCollection IDrive.Volumes
+        IVolumeCollection IDisk.Volumes
         {
             get
             {

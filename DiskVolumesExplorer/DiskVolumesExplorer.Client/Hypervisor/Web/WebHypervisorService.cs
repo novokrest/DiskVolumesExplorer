@@ -1,8 +1,10 @@
-﻿using DiskVolumesExplorer.Client.Services;
+﻿using DiskVolumesExplorer.Core.Extensions;
+using DiskVolumesExplorer.Client.Services;
 using DiskVolumesExplorer.Core.Configs;
 using System;
 using System.Net;
 using System.Runtime.Serialization.Json;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace DiskVolumesExplorer.Client.Hypervisor
@@ -12,7 +14,7 @@ namespace DiskVolumesExplorer.Client.Hypervisor
         private readonly ISecureConnectionConfig _connectionConfig;
 
         private const string GetVirtualMachinesUrlFormat = @"http://{0}/Design_Time_Addresses/hypervisor/vms";
-        private const string GetDrivesUrlFormat = @"http://{0}/Design_Time_Addresses/hypervisor/drives/{1}";
+        private const string GetDrivesUrlFormat = @"http://{0}/Design_Time_Addresses/hypervisor/disks/{1}";
 
         public WebHypervisorService(ISecureConnectionConfig connectionConfig)
         {
@@ -41,13 +43,26 @@ namespace DiskVolumesExplorer.Client.Hypervisor
             return Task.Run((Func<string[]>)GetVirtualMachines);
         }
 
-        private static T GetData<T>(string url)
+        private T GetData<T>(string url)
         {
-            WebRequest request = WebRequest.Create(url);
-            WebResponse ws = request.GetResponse();
-            DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(T));
+            HttpWebRequest request = CreateWebRequest(url);
 
-            return (T)serializer.ReadObject(ws.GetResponseStream());
+            using (WebResponse ws = request.GetResponse())
+            {
+                DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(T));
+
+                return (T)serializer.ReadObject(ws.GetResponseStream());
+            }
+        }
+
+        private HttpWebRequest CreateWebRequest(string url)
+        {
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+            string credentials = string.Concat(_connectionConfig.User, ":", _connectionConfig.Password.ConvertToString());
+            string encodedCredentials = Convert.ToBase64String(ASCIIEncoding.ASCII.GetBytes(credentials));
+            request.Headers.Add("Authorization", "Basic " + encodedCredentials);
+
+            return request;
         }
     }
 }

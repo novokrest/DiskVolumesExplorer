@@ -134,12 +134,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Converters.h" />
     <ClInclude Include="DiskVolumesManagerClr.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Stdafx.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AssemblyInfo.cpp" />
+    <ClCompile Include="Converters.cpp" />
     <ClCompile Include="DiskVolumesManagerClr.cpp" />
     <ClCompile Include="Stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -158,6 +160,9 @@
     <Image Include="app.ico" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DiskVolumesExplorer.Core\DiskVolumesExplorer.Core.csproj">
+      <Project>{ef2ddff8-7028-4861-b7af-9f16d71927ea}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\DiskVolumesExplorer.Native\DiskVolumesExplorer.Native.vcxproj">
       <Project>{e21ff9a7-1242-402c-89ea-049a66292f25}</Project>
     </ProjectReference>

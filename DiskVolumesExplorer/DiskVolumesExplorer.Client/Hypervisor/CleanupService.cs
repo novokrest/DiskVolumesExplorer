@@ -11,7 +11,7 @@ namespace DiskVolumesExplorer.Client.Hypervisor
     {
         public Task CleanUpAsync()
         {
-            return Task.Delay(2000);
+            return Task.Delay(1000);
         }
     }
 }

@@ -16,66 +16,75 @@
                     <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
                     <components:IconTypeToImageConverter x:Key="IconTypeToImageConverter"/>
                     <components:CountToBooleanConverter x:Key="CountToBooleanConverter"/>
-                    <components:DrivesToVolumesConverter x:Key="DrivesToVolumesConverter"/>
+                    <components:DisksToVolumesConverter x:Key="DrivesToVolumesConverter"/>
+                    <components:ReverseCountToVisibilityConverter x:Key="ReverseCountToVisibilityConverter"/>
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
 
     <Grid>
-    <DataGrid x:Name="DisksDataGrid"
-                  ItemsSource="{Binding Drives}"
+        <DataGrid x:Name="DisksDataGrid"
+              Height="300"
+                  ItemsSource="{Binding Disks}"
                   AutoGenerateColumns="False"
                   HeadersVisibility="None"
                   ScrollViewer.HorizontalScrollBarVisibility="Auto"
                   ScrollViewer.CanContentScroll="True">
-        <DataGrid.Columns>
-            <DataGridTemplateColumn Width="Auto">
-                <DataGridTemplateColumn.CellTemplate>
-                    <DataTemplate>
-                        <StackPanel x:Name="DriveHeader">
-                            <StackPanel Orientation="Horizontal">
-                                <Image Source="{Binding Icon, Converter={StaticResource IconTypeToImageConverter}}" Margin="5,5"/>
-                                <TextBlock Text="{Binding Title}"/>
+            <DataGrid.Columns>
+                <DataGridTemplateColumn Width="Auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel x:Name="DriveHeader">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="{Binding Icon, Converter={StaticResource IconTypeToImageConverter}}" Margin="5,5"/>
+                                    <TextBlock Text="{Binding Title}"/>
+                                </StackPanel>
+                                <TextBlock Text="{Binding Type}"/>
+                                <TextBlock Text="{Binding SizeInBytes}"/>
+                                <TextBlock Text="{Binding Status}"/>
                             </StackPanel>
-                            <TextBlock Text="{Binding Type}"/>
-                            <TextBlock Text="{Binding SizeInBytes}"/>
-                            <TextBlock Text="{Binding Status}"/>
-                        </StackPanel>
-                    </DataTemplate>
-                </DataGridTemplateColumn.CellTemplate>
-            </DataGridTemplateColumn>
-            <DataGridTemplateColumn Width="*">
-                <DataGridTemplateColumn.CellTemplate>
-                    <DataTemplate>
-                        <ListBox x:Name="Volumes" ItemsSource="{Binding Volumes}" SelectedValue="{Binding SelectedVolume}">
-                            <ListBox.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <VirtualizingStackPanel Orientation="Horizontal" VirtualizationMode="Recycling"/>
-                                </ItemsPanelTemplate>
-                            </ListBox.ItemsPanel>
-                            <ListBox.ItemContainerStyle>
-                                <Style TargetType="ListBoxItem">
-                                    <Setter Property="BorderThickness" Value="1"/>
-                                    <Setter Property="BorderBrush" Value="Black"/>
-                                    <Setter Property="Margin" Value="2,0"/>
-                                </Style>
-                            </ListBox.ItemContainerStyle>
-                            <ListBox.ItemTemplate>
-                                <DataTemplate>
-                                    <StackPanel>
-                                        <TextBlock Text="{Binding Title}"/>
-                                        <TextBlock Text="{Binding CapacityInBytes}"/>
-                                        <TextBlock Text="{Binding FileSystem}"/>
-                                        <TextBlock Text="{Binding Status}"/>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </ListBox.ItemTemplate>
-                        </ListBox>
-                    </DataTemplate>
-                </DataGridTemplateColumn.CellTemplate>
-            </DataGridTemplateColumn>
-        </DataGrid.Columns>
-    </DataGrid>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ListBox x:Name="Volumes" ItemsSource="{Binding Volumes}" SelectedValue="{Binding SelectedVolume}">
+                                <ListBox.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <VirtualizingStackPanel Orientation="Horizontal" VirtualizationMode="Recycling"/>
+                                    </ItemsPanelTemplate>
+                                </ListBox.ItemsPanel>
+                                <ListBox.ItemContainerStyle>
+                                    <Style TargetType="ListBoxItem">
+                                        <Setter Property="BorderThickness" Value="1"/>
+                                        <Setter Property="BorderBrush" Value="Black"/>
+                                        <Setter Property="Margin" Value="2,0"/>
+                                    </Style>
+                                </ListBox.ItemContainerStyle>
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel>
+                                            <TextBlock Text="{Binding Title}"/>
+                                            <TextBlock Text="{Binding CapacityInBytes}"/>
+                                            <TextBlock Text="{Binding FileSystem}"/>
+                                            <TextBlock Text="{Binding Status}"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <TextBlock x:Name="EmptyDisksDataGridPlaceholder"
+                   Height="{Binding ElementName=DisksDataGrid}"
+                   Width="{Binding ElementName=DisksDataGrid}"
+                   Visibility="{Binding Disks.Count, Converter={StaticResource ReverseCountToVisibilityConverter}}"
+                   Text="No disks information available"
+                   TextAlignment="Center"/>
     </Grid>
 </UserControl>

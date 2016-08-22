@@ -4,7 +4,7 @@ using System.Collections;
 
 namespace DiskVolumesExplorer.Client.Services
 {
-    class DriveDataCollection : IDriveCollection
+    class DriveDataCollection : IDiskCollection
     {
         private DriveData[] _drives;
 
@@ -13,11 +13,11 @@ namespace DiskVolumesExplorer.Client.Services
             _drives = drives;
         }
 
-        public IDrive this[int index] => _drives[index];
+        public IDisk this[int index] => _drives[index];
 
-        public IEnumerator<IDrive> GetEnumerator()
+        public IEnumerator<IDisk> GetEnumerator()
         {
-            return ((IEnumerable<IDrive>)_drives).GetEnumerator();
+            return ((IEnumerable<IDisk>)_drives).GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()

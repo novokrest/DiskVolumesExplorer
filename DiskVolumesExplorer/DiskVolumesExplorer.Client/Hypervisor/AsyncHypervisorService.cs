@@ -11,7 +11,7 @@ namespace DiskVolumesExplorer.Client.Hypervisor
     internal interface IAsyncHypervisorService
     {
         Task<IReadOnlyList<string>> GetVirtualMachinesAsync();
-        Task<IDriveCollection> GetDrivesAsync(string virtualMachineName);
+        Task<IDiskCollection> GetDrivesAsync(string virtualMachineName);
     }
 
     internal class AsyncHypervisorService : IAsyncHypervisorService
@@ -23,12 +23,12 @@ namespace DiskVolumesExplorer.Client.Hypervisor
             _hypervisorService = hypervisorService;
         }
 
-        public Task<IDriveCollection> GetDrivesAsync(string virtualMachineName)
+        public Task<IDiskCollection> GetDrivesAsync(string virtualMachineName)
         {
             return Task.Run(() => GetDrives(virtualMachineName));
         }
 
-        private IDriveCollection GetDrives(string virtualMachineName)
+        private IDiskCollection GetDrives(string virtualMachineName)
         {
             DriveData[] drives = _hypervisorService.GetDrives(virtualMachineName);
             return new DriveDataCollection(drives);
@@ -67,12 +67,12 @@ namespace DiskVolumesExplorer.Client.Hypervisor
             return hypervisorServiceClient;
         }
 
-        public Task<IDriveCollection> GetDrivesAsync(string virtualMachineName)
+        public Task<IDiskCollection> GetDrivesAsync(string virtualMachineName)
         {
             return Task.Run(() => GetVirtualMachineDrives(virtualMachineName));
         }
 
-        private IDriveCollection GetVirtualMachineDrives(string virtualMachineName)
+        private IDiskCollection GetVirtualMachineDrives(string virtualMachineName)
         {
             DriveData[] drives = HypervisorServiceClient.GetDrives(virtualMachineName);
             return new DriveDataCollection(drives);

@@ -26,7 +26,7 @@ namespace DiskVolumesExplorer.Service
         private void CreateServiceInstaller()
         {
             _serviceInstaller = new ServiceInstaller();
-            _serviceInstaller.ServiceName = HypervisorServiceWindowsHost.HypervisorServiceName;
+            _serviceInstaller.ServiceName = HypervisorWindowsService.HypervisorServiceName;
         }
 
         private void RegisterInstallers()

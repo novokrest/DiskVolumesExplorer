@@ -64,22 +64,31 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data\DriveData.cs" />
+    <Compile Include="Configs\Users\IUser.cs" />
+    <Compile Include="Configs\Users\UserConfigsLoader.cs" />
+    <Compile Include="Configs\Users\UserElement.cs" />
+    <Compile Include="Configs\Users\UsersCollection.cs" />
+    <Compile Include="Configs\Users\UsersConfigSection.cs" />
+    <Compile Include="Configs\VmWare\VmWareConfigLoader.cs" />
+    <Compile Include="Data\DiskData.cs" />
     <Compile Include="Data\VolumeData.cs" />
+    <Compile Include="Extensions\VmWareConfigExtension.cs" />
     <Compile Include="HypervisorService.cs" />
+    <Compile Include="HypervisorServiceHost.cs" />
     <Compile Include="HypervisorServiceInstaller.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="HypervisorServiceWindowsHost.cs">
+    <Compile Include="HypervisorWindowsService.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="IHypervisorService.cs" />
     <Compile Include="Mocks\MockHypervisorService.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RestAuthorizationManager.cs" />
     <Compile Include="VmWare\CustomSecurityAssertionBearer.cs" />
-    <Compile Include="VmWare\IVmWareConfig.cs" />
-    <Compile Include="VmWare\VmWareConfigSection.cs" />
+    <Compile Include="Configs\VmWare\VmWareConfigSection.cs" />
+    <Compile Include="VmWare\ServiceUtil.cs" />
     <Compile Include="VmWare\VmWareHypervisor.cs" />
     <Compile Include="VmWare\VmWareServiceConnection.cs" />
   </ItemGroup>

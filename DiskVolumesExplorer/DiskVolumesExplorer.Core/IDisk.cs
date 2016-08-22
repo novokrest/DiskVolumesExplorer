@@ -2,7 +2,7 @@
 
 namespace DiskVolumesExplorer.Core
 {
-    public interface IDrive
+    public interface IDisk
     {
         string Title { get; }
         string Type { get; }
@@ -12,8 +12,8 @@ namespace DiskVolumesExplorer.Core
         IVolumeCollection Volumes { get; }
     }
 
-    public interface IDriveCollection : IEnumerable<IDrive>
+    public interface IDiskCollection : IEnumerable<IDisk>
     {
-        IDrive this[int index] { get; }
+        IDisk this[int index] { get; }
     }
 }

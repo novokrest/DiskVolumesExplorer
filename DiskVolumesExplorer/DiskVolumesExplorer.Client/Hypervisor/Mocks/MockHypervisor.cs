@@ -11,7 +11,7 @@ namespace DiskVolumesExplorer.Client.Hypervisor.Mocks
 {
     internal class MockHypervisorService : IAsyncHypervisorService
     {
-        public Task<IDriveCollection> GetDrivesAsync(string virtualMachineName)
+        public Task<IDiskCollection> GetDrivesAsync(string virtualMachineName)
         {
             var disks = MockVirtualMachinesRepository.GetVirtualMachine(virtualMachineName).Disks;
             return DelayTasks.WithResult(3000, disks);

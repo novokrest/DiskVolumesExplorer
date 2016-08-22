@@ -11,6 +11,6 @@ namespace DiskVolumesExplorer.Core.Mocks
         }
 
         public string Name { get; }
-        public IDriveCollection Disks { get; }
+        public IDiskCollection Disks { get; }
     }
 }

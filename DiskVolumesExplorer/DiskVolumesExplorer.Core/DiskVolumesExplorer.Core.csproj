@@ -54,6 +54,8 @@
   <ItemGroup>
     <Compile Include="Configs\ConnectionConfig.cs" />
     <Compile Include="Configs\ConnectionConfigObserver.cs" />
+    <Compile Include="Configs\IVmWareConnectionConfig.cs" />
+    <Compile Include="Configs\IVmWareDiskConfig.cs" />
     <Compile Include="Extensions\SecureStringExtension.cs" />
     <Compile Include="Extensions\StringExtension.cs" />
     <Compile Include="IDisk.cs" />
@@ -70,9 +72,6 @@
     <Compile Include="ServerService.cs" />
     <Compile Include="Verifiers.cs" />
     <Compile Include="VmWareService.cs" />
-    <Compile Include="VmWare\CustomSecurityAssertionBearer.cs" />
-    <Compile Include="VmWare\VmWareHypervisor.cs" />
-    <Compile Include="VmWare\VmWareServiceConnection.cs" />
     <Compile Include="IVolume.cs" />
   </ItemGroup>
   <ItemGroup>

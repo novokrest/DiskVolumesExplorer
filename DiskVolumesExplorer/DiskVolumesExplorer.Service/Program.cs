@@ -13,7 +13,7 @@ namespace DiskVolumesExplorer.Service
             }
             else
             {
-                ServiceBase.Run(new HypervisorServiceWindowsHost());
+                ServiceBase.Run(new HypervisorWindowsService());
             }
         }
 
@@ -29,7 +29,7 @@ namespace DiskVolumesExplorer.Service
 
         private static ConsoleKeyInfo RunService()
         {
-            using (var service = new HypervisorServiceWindowsHost())
+            using (var service = new HypervisorWindowsService())
             {
                 Console.WriteLine("Starting Hypervisor service...");
                 service.Start();

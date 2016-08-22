@@ -19,6 +19,8 @@
 #include <vector>
 #include <stdexcept>
 
+#include <msclr/marshal_cppstd.h>
+
 #include "vixDiskLib.h"
 #include "vixMntapi.h"
 #include "VixDiskLibUtils.h"

@@ -1,3 +1,9 @@
-﻿DiskVolumesExplorer.Native.lib(DiskVolumesManager.obj) : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/OPT:LBR' specification
-  DiskVolumesExplorer.Native.CLR.vcxproj -> E:\Github\DiskVolumesExplorer\DiskVolumesExplorer\x64\Debug\DiskVolumesExplorer.Native.CLR.dll
-  DiskVolumesExplorer.Native.CLR.vcxproj -> E:\Github\DiskVolumesExplorer\DiskVolumesExplorer\x64\Debug\DiskVolumesExplorer.Native.CLR.pdb (Full PDB)
+﻿  Stdafx.cpp
+  AssemblyInfo.cpp
+  DiskVolumesManagerClr.cpp
+  Generating Code...
+DiskVolumesExplorer.Native.lib(DiskVolumesManager.obj) : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/OPT:LBR' specification
+DiskVolumesManagerClr.obj : error LNK2020: unresolved token (06000004) DiskVolumesExplorer.Native.Wrappers.DiskVolumesManager::GetDisks
+DiskVolumesManagerClr.obj : error LNK2020: unresolved token (06000008) DiskVolumesExplorer.Native.Wrappers.Converters::ToNative
+DiskVolumesManagerClr.obj : error LNK2020: unresolved token (06000009) DiskVolumesExplorer.Native.Wrappers.Converters::ToNative
+E:\Github\DiskVolumesExplorer\DiskVolumesExplorer\x64\Debug\DiskVolumesExplorer.Native.CLR.dll : fatal error LNK1120: 3 unresolved externals

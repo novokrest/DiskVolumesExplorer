@@ -10,7 +10,7 @@ namespace DiskVolumesExplorer.Client.Hypervisor.Mocks
     {
         public Task CleanUpAsync()
         {
-            return Task.Delay(3000);
+            return Task.Delay(1000);
         }
     }
 }
