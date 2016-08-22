@@ -1,3 +1,0 @@
-﻿  stdafx.cpp
-  main.cpp
-e:\github\diskvolumesexplorer\diskvolumesexplorer\diskvolumesexplorer.native.tester\main.cpp(7): error C3083: 'Core': the symbol to the left of a '::' must be a type
