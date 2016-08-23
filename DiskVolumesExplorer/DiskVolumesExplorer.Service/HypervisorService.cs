@@ -1,10 +1,7 @@
 ﻿using System;
-using DiskVolumesExplorer.Service.Data;
-using DiskVolumesExplorer.Core.Configs;
 using DiskVolumesExplorer.Service.VmWare;
 using System.Linq;
 using DiskVolumesExplorer.Service.Configs.VmWare;
-using DiskVolumesExplorer.Service.Extensions;
 using DiskVolumesExplorer.Service.Core.Configs;
 using DiskVolumesExplorer.Service.Core.Data;
 
@@ -25,7 +22,8 @@ namespace DiskVolumesExplorer.Service
         {
             using (var vmWareHypervisor = new VmWareHypervisor(_vmWareConnectionConfig.Value))
             {
-                return vmWareHypervisor.GetDisks(virtualMachineName);
+                //return vmWareHypervisor.GetDisks(virtualMachineName);
+                return new Mocks.MockHypervisorService().GetDisks(virtualMachineName);
             }
         }
 

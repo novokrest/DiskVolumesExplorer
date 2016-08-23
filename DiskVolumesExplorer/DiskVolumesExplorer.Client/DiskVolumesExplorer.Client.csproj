@@ -65,6 +65,7 @@
     <Compile Include="Base\CleanUpViewModel.cs" />
     <Compile Include="Base\ErrorViewModel.cs" />
     <Compile Include="Components\BooleanToVisibleHiddenConverter.cs" />
+    <Compile Include="Components\BytesToTextConverter.cs" />
     <Compile Include="Components\CancelCloseBehavior.cs" />
     <Compile Include="Components\CountToBooleanConverter.cs" />
     <Compile Include="Components\CountToVisibilityConverter.cs" />

@@ -23,9 +23,11 @@ namespace DiskVolumesExplorer.Client
         private readonly DelegateCommand _loadVirtualMachinesCommand;
         private readonly DelegateCommand _loadVirtualMachineDisksCommand;
 
-        private IReadOnlyList<string> _virtualMachineNames = Array.AsReadOnly(new string[0]);
+        private IReadOnlyList<string> _virtualMachineNamesStub = Array.AsReadOnly(new string[0]);
+        private IReadOnlyList<string> _virtualMachineNames; 
         private int _selectedVirtualMachineIndex;
-        private DiskViewModelCollection _disks = DiskViewModelCollection.Empty;
+        private DiskViewModelCollection _disksStub = DiskViewModelCollection.Empty;
+        private DiskViewModelCollection _disks;
         private VolumeViewModel _selectedVolume;
 
         public MainWindowViewModel(IWindowCloseService closeDialogService, 
@@ -41,6 +43,9 @@ namespace DiskVolumesExplorer.Client
             _virtualMachineNamesLoader = virtualMachineNamesLoader;
             _virtualMachineDisksLoader = virtualMachineDisksLoader;
             _cleanUpService= cleanUpService;
+
+            _virtualMachineNames = _virtualMachineNamesStub;
+            _disks = _disksStub;
 
             _closeCommand = new DelegateCommand(Close);
             _loadVirtualMachinesCommand = new DelegateCommand(LoadVirtualMachines);
@@ -112,6 +117,8 @@ namespace DiskVolumesExplorer.Client
         private async void LoadVirtualMachines()
         {
             if (_connectionDialogService.ShowConnectionDialog() != true) return;
+            VirtualMachineNames = _virtualMachineNamesStub;
+            Disks = _disksStub;
             StartProcessing($"Loading virtual machine names...");
             await LoadVirtualMachinesAsync();
             StopProcessing();

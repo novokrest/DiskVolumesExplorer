@@ -12,6 +12,7 @@ namespace DiskVolumesExplorer.Service.VmWare
 {
     public class VmWareServiceConnection
     {
+        private const string ServiceUrlFormat = "https://{0}/sdk";
         private const string ServiceReferenceValue = "ServiceInstance";
 
         public enum ConnectionState
@@ -54,10 +55,10 @@ namespace DiskVolumesExplorer.Service.VmWare
         /// <summary>
         /// Creates an instance of the VMA proxy and establishes a connection
         /// </summary>
-        /// <param name="url"></param>
+        /// <param name="server"></param>
         /// <param name="username"></param>
         /// <param name="password"></param>
-        public void Connect(string url, string username, string password)
+        public void Connect(string server, string username, string password)
         {
             if (_service != null)
             {
@@ -65,7 +66,7 @@ namespace DiskVolumesExplorer.Service.VmWare
             }
 
             _service = new VimService();
-            _service.Url = url;
+            _service.Url = string.Format(ServiceUrlFormat, server);
             _service.Timeout = 600000; //The value can be set to some higher value also.
             _service.CookieContainer = new System.Net.CookieContainer();
 
